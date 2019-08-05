@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Talk2Tail</string>
+    <string name="this_is_dog_dashboard">This is Dog Dashboard</string>
+    <string name="this_is_dog_vaccination">This is Dog Vaccination</string>
+    <string name="this_is_owner_dashboard">This is Owner Dashboard</string>
+    <string name="menu_owner_dashboard">Owner Dashboard</string>
+    <string name="menu_dog_dashboard">Dog Dashboard</string>
+    <string name="menu_dog_vaccination">Dog Vaccination</string>
+</resources>

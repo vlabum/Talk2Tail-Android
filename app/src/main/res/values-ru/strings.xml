@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Talk2Tail</string>
+    <string name="menu_dog_dashboard">Панель Собаки</string>
+    <string name="menu_dog_vaccination">Прививки Собаки</string>
+    <string name="menu_owner_dashboard">Панель Хозяина</string>
+    <string name="this_is_dog_dashboard">Это панель собаки</string>
+    <string name="this_is_dog_vaccination">Это прививки собаки</string>
+    <string name="this_is_owner_dashboard">Это панель хозяина</string>
+</resources>
