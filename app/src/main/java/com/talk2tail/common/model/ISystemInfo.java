@@ -4,4 +4,7 @@ public interface ISystemInfo {
 
     int getBuildVersion();
 
+    boolean needToConfigSSL();
+
+    boolean isStreamApiAvailable();
 }

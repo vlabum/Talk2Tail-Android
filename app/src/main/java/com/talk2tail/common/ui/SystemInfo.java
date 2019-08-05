@@ -11,4 +11,14 @@ public class SystemInfo implements ISystemInfo {
         return Build.VERSION.SDK_INT;
     }
 
+    @Override
+    public boolean needToConfigSSL() {
+        return getBuildVersion() < 22;
+    }
+
+    @Override
+    public boolean isStreamApiAvailable() {
+        return getBuildVersion() >= 22;
+    }
+
 }

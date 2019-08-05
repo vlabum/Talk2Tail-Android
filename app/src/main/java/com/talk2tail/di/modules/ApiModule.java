@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.talk2tail.App;
 import com.talk2tail.common.model.ISystemInfo;
+import com.talk2tail.common.model.api.support.ApiSupportUtil;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -43,7 +44,7 @@ public class ApiModule {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(httpLoggingInterceptor)
                 .addNetworkInterceptor(chuckInterceptor);
-        return builder.build();
+        return ApiSupportUtil.enableTls12OnPreLollipop(builder, systemInfo).build();
     }
 
     @Provides
