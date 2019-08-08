@@ -6,4 +6,24 @@
     <string name="menu_owner_dashboard">Owner Dashboard</string>
     <string name="menu_dog_dashboard">Dog Dashboard</string>
     <string name="menu_dog_vaccination">Dog Vaccination</string>
+
+    <string name="login_caption">Authorization</string>
+    <string name="login_hint">Login</string>
+    <string name="pwd_hint">Password</string>
+    <string name="login_ok_btn">LOGIN</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="remind">Remind</string>
+    <string name="first_time_here">First time here?</string>
+    <string name="check_in">Check in</string>
+    <string name="log_in_using_social_networks">Log in using social networks</string>
+    <string name="reg_name">Name</string>
+    <string name="reg_family">Family</string>
+    <string name="reg_e_mail">e-mail</string>
+    <string name="reg_confirm_password">Confirm password</string>
+    <string name="reg_to_register">TO REGISTER</string>
+    <string name="are_you_registered">Are you registered?</string>
+    <string name="login">Login</string>
+    <string name="check_in_caption">Check in</string>
+
+
 </resources>

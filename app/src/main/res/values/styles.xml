@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.TextCaption">
+        <item name="android:textSize">@dimen/captions_text_size</item>
+    </style>
+
+    <style name="AppTheme.EditTextInput">
+        <item name="android:textSize">@dimen/inputs_text_size</item>
+    </style>
+
+    <style name="AppTheme.TextViewClickable">
+        <item name="android:textColor">@color/colorActiveElement</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="AppTheme.Button">
+        <item name="android:background">@color/colorButtonBackround</item>
+        <item name="android:textColor">@color/colorButtonTextcolor</item>
+    </style>
+
 </resources>
