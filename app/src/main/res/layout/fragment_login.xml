@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dogdashboard.ui.DogDashboardFragment">
+
+    <TextView
+        android:id="@+id/login_caption_tv"
+        style="@style/AppTheme.TextCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.10" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_til"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start_with"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/margin_end_with"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_caption_tv">
+
+        <EditText
+            android:id="@+id/login_te"
+            style="@style/AppTheme.EditTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/login_hint" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_pwd_til"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start_with"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/margin_end_with"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_til">
+
+        <EditText
+            android:id="@+id/login_pwd_te"
+            style="@style/AppTheme.EditTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/pwd_hint" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_ok_btn"
+        style="@style/AppTheme.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/login_ok_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_pwd_til" />
+
+    <LinearLayout
+        android:id="@+id/remind_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_ok_btn">
+
+        <TextView
+            android:id="@+id/fogot_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_your_password" />
+
+        <TextView
+            android:id="@+id/remind_text_tv"
+            style="@style/AppTheme.TextViewClickable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/remind" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/checkin_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/remind_ll">
+
+        <TextView
+            android:id="@+id/first_time_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_time_here" />
+
+        <TextView
+            android:id="@+id/checkin_text_tv"
+            style="@style/AppTheme.TextViewClickable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/check_in" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/soc_net_text_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/log_in_using_social_networks"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkin_ll" />
+
+    <LinearLayout
+        android:id="@+id/soc_net_list_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/soc_net_text_tv">
+
+        <com.talk2tail.common.ui.CircleImageView
+            android:id="@+id/vk_civ"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+
+        <com.talk2tail.common.ui.CircleImageView
+            android:id="@+id/fb_civ"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp" />
+
+        <com.talk2tail.common.ui.CircleImageView
+            android:id="@+id/g_civ"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
