@@ -1,6 +1,7 @@
 package com.talk2tail.common.ui;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +27,18 @@ public class GlideImageLoader implements IImageLoader<ImageView> {
 
         Glide.with(container.getContext())
                 .load(url)
+                .apply(RequestOptions.bitmapTransform(multi))
+                .into(container);
+    }
+
+    @Override
+    public void loadInto(Uri imageUri, ImageView container, int corners) {
+        final MultiTransformation<Bitmap> multi = new MultiTransformation<>(
+                new RoundedCorners(corners)
+        );
+
+        Glide.with(container.getContext())
+                .load(imageUri)
                 .apply(RequestOptions.bitmapTransform(multi))
                 .into(container);
     }

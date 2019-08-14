@@ -28,12 +28,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class RegisterFragment extends MvpAppCompatFragment implements LoginView, BackButtonListener {
 
-    @BindView(R.id.reg_name_te)
-    protected EditText name;
-
-    @BindView(R.id.reg_family_te)
-    protected EditText family;
-
     @BindView(R.id.reg_email_te)
     protected EditText email;
 
