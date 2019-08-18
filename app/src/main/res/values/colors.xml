@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#E91E63</color>
 
-    <color name="colorActiveElement">#2196F3</color>
+    <color name="background">#28314C</color>
 
-    <color name="colorButtonBackround">#2196F3</color>
+    <color name="inputHint">#6F7184</color>
+    <color name="inputLayoutUnderline">#FFFFFF</color>
+    <color name="inputLayoutActivated">#BDFDFD</color>
+
+    <color name="colorActiveElement">#8AB4FB</color>
+
+    <color name="colorButtonBackground">#80AFFA</color>
     <color name="colorButtonTextcolor">#FFF</color>
+
+    <color name="red">#FF0000</color>
 </resources>

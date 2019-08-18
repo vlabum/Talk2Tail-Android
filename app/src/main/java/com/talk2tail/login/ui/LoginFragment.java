@@ -16,6 +16,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.ui.BackButtonListener;
+import com.talk2tail.common.ui.GlideImageLoader;
 import com.talk2tail.login.presenter.LoginPresenter;
 import com.talk2tail.login.view.LoginView;
 
@@ -82,6 +83,8 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
                 onClickCheckIn();
             }
         });
+        GlideImageLoader imageLoader = new GlideImageLoader();
+
         return view;
     }
 

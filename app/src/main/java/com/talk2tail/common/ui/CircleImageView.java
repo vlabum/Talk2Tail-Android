@@ -25,7 +25,7 @@ public class CircleImageView extends AppCompatImageView {
     protected void onDraw(Canvas canvas) {
         final float halfWith = getWidth() / 2f;
         final float halfHeight = getHeight() / 2f;
-        final float radius = Math.max(halfHeight, halfWith);
+        final float radius = Math.min(halfHeight, halfWith);
         final Path path = new Path();
         path.addCircle(halfWith, halfHeight, radius, Path.Direction.CCW);
         canvas.clipPath(path);

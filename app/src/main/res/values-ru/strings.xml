@@ -7,23 +7,20 @@
     <string name="this_is_dog_dashboard">Это панель собаки</string>
     <string name="this_is_dog_vaccination">Это прививки собаки</string>
     <string name="this_is_owner_dashboard">Это панель хозяина</string>
-
     <string name="login_caption">Авторизация</string>
-    <string name="login_hint">Имя пользователя</string>
+    <string name="login_hint">Введите адрес электронной почты</string>
     <string name="pwd_hint">Пароль</string>
-    <string name="login_ok_btn">ВОЙТИ</string>
-
+    <string name="login_ok_btn">Войти</string>
     <string name="forgot_your_password">Забыли пароль?</string>
     <string name="remind">Напомнить</string>
     <string name="first_time_here">Впервый раз здесь?</string>
     <string name="check_in">Регистрация</string>
     <string name="log_in_using_social_networks">Или войдите с помощью соцсетей:</string>
-
     <string name="reg_name">Имя</string>
     <string name="reg_family">Фамилия</string>
     <string name="reg_e_mail">e-mail</string>
     <string name="reg_confirm_password">Пароль еще раз</string>
-    <string name="reg_to_register">ЗАРЕГИСТРИРОВАТЬСЯ</string>
+    <string name="reg_to_register">Зарегистрироваться</string>
     <string name="are_you_registered">Уже зарегистрированы?</string>
     <string name="login">Войти</string>
     <string name="check_in_caption">Регистрация</string>
