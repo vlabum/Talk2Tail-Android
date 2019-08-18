@@ -6,23 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".dogdashboard.ui.DogDashboardFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left_pic1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10218978" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right_pic1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9270073" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top_pic1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.034199726" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom_pic1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3652531" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28180575" />
+
+
+    <ImageView
+        android:id="@+id/reg_top_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_t2t_reg_top"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_pic1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_pic1"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_pic1"
+        app:layout_constraintTop_toTopOf="@id/guideline_top_pic1"
+        app:layout_constraintVertical_bias="0" />
+
+
     <TextView
         android:id="@+id/reg_caption_tv"
         style="@style/AppTheme.TextCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/check_in"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintTop_toTopOf="@id/guideline_top_caption" />
 
     <LinearLayout
         android:id="@+id/reg_question_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="32dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +78,7 @@
 
         <TextView
             android:id="@+id/reg_question_tv"
+            style="@style/AppTheme.TextViewInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/are_you_registered" />
@@ -44,62 +93,39 @@
 
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reg_name_til"
-        android:layout_width="0dp"
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left_inputs"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_with"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/margin_end_with"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_question_ll">
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15815085" />
 
-        <EditText
-            android:id="@+id/reg_name_te"
-            style="@style/AppTheme.EditTextInput"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/reg_name" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reg_family_til"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right_inputs"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_with"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/margin_end_with"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_name_til">
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8442822" />
 
-        <EditText
-            android:id="@+id/reg_family_te"
-            style="@style/AppTheme.EditTextInput"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/reg_family" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_email_til"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_with"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/margin_end_with"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_family_til">
+        android:layout_marginTop="26dp"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right_inputs"
+        app:layout_constraintStart_toStartOf="@id/guideline_left_inputs"
+        app:layout_constraintTop_toBottomOf="@id/reg_question_ll"
+        tools:layout_editor_absoluteY="405dp">
 
         <EditText
             android:id="@+id/reg_email_te"
-            style="@style/AppTheme.EditTextInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_login_person"
+            android:drawablePadding="4dp"
             android:hint="@string/reg_e_mail" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -108,18 +134,17 @@
         android:id="@+id/reg_pwd_til"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_with"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/margin_end_with"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right_inputs"
+        app:layout_constraintStart_toStartOf="@id/guideline_left_inputs"
         app:layout_constraintTop_toBottomOf="@+id/reg_email_til">
 
         <EditText
             android:id="@+id/reg_pwd_te"
-            style="@style/AppTheme.EditTextInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_https_48px"
+            android:drawablePadding="4dp"
             android:hint="@string/pwd_hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -128,18 +153,17 @@
         android:id="@+id/reg_pwdconfirm_til"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_with"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/margin_end_with"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right_inputs"
+        app:layout_constraintStart_toStartOf="@id/guideline_left_inputs"
         app:layout_constraintTop_toBottomOf="@+id/reg_pwd_til">
 
         <EditText
             android:id="@+id/reg_pwdconfirm_te"
-            style="@style/AppTheme.EditTextInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_https_48px"
+            android:drawablePadding="4dp"
             android:hint="@string/reg_confirm_password" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -147,14 +171,53 @@
     <Button
         android:id="@+id/reg_ok_btn"
         style="@style/AppTheme.Button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_shape"
+        android:text="@string/reg_to_register"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right_inputs"
+        app:layout_constraintStart_toStartOf="@id/guideline_left_inputs"
+        app:layout_constraintTop_toBottomOf="@id/reg_pwdconfirm_til" />
+
+    <ImageView
+        android:id="@+id/reg_bottom_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="41dp"
+        android:src="@drawable/ic_t2t_reg_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_pic2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_pic2"
+        app:layout_constraintTop_toBottomOf="@+id/reg_ok_btn"
+        app:layout_constraintVertical_bias="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left_pic2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/reg_to_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reg_pwdconfirm_til" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.07785888" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right_pic2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.919708" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top_pic2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="578dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom_pic2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="80dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
