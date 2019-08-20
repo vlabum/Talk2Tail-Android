@@ -73,5 +73,8 @@
         <!--<item name="colorControlHighlight">@color/green</item>-->
     </style>
 
-
+    <!-- FAB -->
+    <style name="FABTheme" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">5dp</item>
+    </style>
 </resources>
