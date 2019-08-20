@@ -3,6 +3,7 @@ package com.talk2tail.main.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -119,6 +120,27 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+        @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_singledog) {
+            presenter.goToSingleScreen();
+            return true;
+        }
+        if (id == R.id.menu_multidog) {
+            presenter.goToMultidogScreen();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

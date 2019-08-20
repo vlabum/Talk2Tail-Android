@@ -40,4 +40,11 @@ public class MainPresenter extends MvpPresenter<MainView> {
     public void goToDogVaccination() {
         router.navigateTo(new Screens.DogVaccinationScreen());
     }
+
+    public void goToSingleScreen() {
+    }
+
+    public void goToMultidogScreen() {
+//        router.navigateTo(new Screens.MultidogScreen());
+    }
 }
