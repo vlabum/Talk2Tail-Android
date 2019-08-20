@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.ui.BackButtonListener;
@@ -22,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -36,8 +34,6 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
 
     @BindView(R.id.owner_dashboard_text)
     protected TextView textView;
-    @BindView(R.id.owner_dashboard_fab)
-    protected FloatingActionButton fab;
 
     public OwnerDashboardFragment() {
         // Required empty public constructor
@@ -74,8 +70,4 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         return true;
     }
 
-    @OnClick(R.id.owner_dashboard_fab)
-    protected void fabClick() {
-        presenter.onFabClick();
-    }
 }

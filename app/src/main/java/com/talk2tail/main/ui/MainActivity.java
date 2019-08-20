@@ -13,6 +13,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.ui.BackButtonListener;
@@ -24,7 +25,9 @@ import com.talk2tail.ownerdashboard.ui.OwnerDashboardFragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
@@ -36,6 +39,9 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
     }
+
+    @BindView(R.id.owner_dashboard_fab)
+    protected FloatingActionButton fab;
 
     @InjectPresenter
     MainPresenter presenter;
@@ -54,23 +60,25 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             final Fragment fragment;
             switch (item.getItemId()) {
-                case R.id.navigation_owner_dashboard:
+                case R.id.tracker_menu_item:
                     fragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
                     if (!(fragment instanceof OwnerDashboardFragment)) {
                         presenter.goToOwnerDashboard();
                     }
                     return true;
-                case R.id.navigation_dog_dashboard:
+                case R.id.diary_menu_item:
                     fragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
                     if (!(fragment instanceof DogDashboardFragment)) {
                         presenter.goToDogDashboard();
                     }
                     return true;
-                case R.id.navigation_dog_vaccination:
+                case R.id.helpful_menu_item:
                     fragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
                     if (!(fragment instanceof DogVaccinationFragment)) {
                         presenter.goToDogVaccination();
                     }
+                    return true;
+                case R.id.contacts_menu_item:
                     return true;
             }
             return false;
@@ -141,6 +149,11 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick(R.id.owner_dashboard_fab)
+    protected void fabClick() {
+        presenter.onFabClick();
     }
 
 }

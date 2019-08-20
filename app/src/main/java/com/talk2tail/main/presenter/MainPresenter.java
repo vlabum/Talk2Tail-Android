@@ -8,6 +8,7 @@ import com.talk2tail.navigation.Screens;
 import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Router;
+import timber.log.Timber;
 
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
@@ -47,4 +48,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
     public void goToMultidogScreen() {
 //        router.navigateTo(new Screens.MultidogScreen());
     }
+
+    public void onFabClick() {
+        Timber.d("FAB clicked");
+    }
+
 }
