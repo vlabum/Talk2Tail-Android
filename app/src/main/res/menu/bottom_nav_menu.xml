@@ -2,18 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_owner_dashboard"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/menu_owner_dashboard" />
+        android:id="@+id/tracker_menu_item"
+        android:icon="@drawable/ic_t2t_tracker_menu"
+        android:title="@string/tracker_menu_title" />
 
     <item
-        android:id="@+id/navigation_dog_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/menu_dog_dashboard" />
+        android:id="@+id/diary_menu_item"
+        android:icon="@drawable/ic_t2t_diary_menu"
+        android:title="@string/diary_menu_title" />
 
     <item
-        android:id="@+id/navigation_dog_vaccination"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/menu_dog_vaccination" />
+        android:id="@+id/helpful_menu_item"
+        android:icon="@drawable/ic_t2t_helpful_menu"
+        android:title="@string/helpful_menu_title" />
+
+    <item
+        android:id="@+id/contacts_menu_item"
+        android:icon="@drawable/ic_t2t_contacts_menu"
+        android:title="@string/contacts_menu_title" />
 
 </menu>
