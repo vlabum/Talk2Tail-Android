@@ -34,6 +34,10 @@ public class MainPresenter extends MvpPresenter<MainView> {
         router.navigateTo(new Screens.OwnerDashboardScreen());
     }
 
+    public void goToOwnerDashEmpty() {
+        router.navigateTo(new Screens.OwnerDashEmptyFragmentScreen());
+    }
+
     public void goToDogDashboard() {
         router.navigateTo(new Screens.DogDashboardScreen());
     }
