@@ -148,6 +148,10 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
             presenter.goToMultidogScreen();
             return true;
         }
+        if (id == R.id.menu_nodog) {
+            presenter.goToOwnerDashEmpty();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

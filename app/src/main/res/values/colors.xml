@@ -13,10 +13,13 @@
     <color name="fab_pressed">#FE8484</color>
 
     <color name="background">#28314C</color>
+    <color name="actionBarColor">#34436D</color>
 
     <color name="inputHint">#6F7184</color>
     <color name="inputLayoutUnderline">#FFFFFF</color>
     <color name="inputLayoutActivated">#BDFDFD</color>
+
+    <color name="textViewHidden">#6F7184</color>
 
     <color name="colorActiveElement">#8AB4FB</color>
 

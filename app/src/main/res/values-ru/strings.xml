@@ -25,6 +25,8 @@
     <string name="login">Войти</string>
     <string name="check_in_caption">Регистрация</string>
     <string name="contacts_menu_title">Контакты</string>
+    <string name="oops_text">Ой! Похоже вы еще\nне добавили\nни одной собаки…</string>
+    <string name="change_it">Исправить это</string>
 
 
 </resources>

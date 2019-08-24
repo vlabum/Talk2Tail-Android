@@ -25,6 +25,8 @@
     <string name="login">Login</string>
     <string name="check_in_caption">Check in</string>
     <string name="contacts_menu_title">Contacts</string>
+    <string name="oops_text">Oops!\nYou don\'t have\na dog…</string>
+    <string name="change_it">Change it</string>
 
 
 </resources>
