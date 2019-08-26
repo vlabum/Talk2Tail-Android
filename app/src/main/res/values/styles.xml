@@ -34,9 +34,9 @@
         <item name="android:textSize">@dimen/info_text_size</item>
     </style>
 
-    <style name="AppTheme.TextCaption">
+    <style name="AppTheme.StartDark.TextCaption">
         <item name="android:textSize">@dimen/captions_text_size</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="AppTheme.EditTextInput">
@@ -95,15 +95,16 @@
     <!-- FAB -->
     <style name="FABTheme" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">5dp</item>
-        <item name="android:backgroundTint">@drawable/fab_background_tint</item>
+        <!--        <item name="android:backgroundTint">@drawable/fab_background_tint</item>-->
         <item name="android:tint">@drawable/fab_tint</item>
         <item name="android:background">@color/background</item>
         <item name="colorAccent">@color/background</item>
-
     </style>
 
     <!-- BottomNavigationView -->
     <style name="BNVTheme" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="android:background">@color/background</item>
     </style>
+
+
 </resources>

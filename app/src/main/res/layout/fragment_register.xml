@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dogdashboard.ui.DogDashboardFragment">
+    tools:context=".login.ui.LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left_pic1"
@@ -53,18 +53,22 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right_pic1"
         app:layout_constraintStart_toStartOf="@+id/guideline_left_pic1"
         app:layout_constraintTop_toTopOf="@id/guideline_top_pic1"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        tools:ignore="ContentDescription" />
 
 
-    <TextView
-        android:id="@+id/reg_caption_tv"
-        style="@style/AppTheme.TextCaption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/check_in"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_top_caption" />
+    <ImageView
+        android:id="@+id/reg_bottom_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="41dp"
+        android:src="@drawable/ic_t2t_reg_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_pic2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_pic2"
+        app:layout_constraintTop_toBottomOf="@+id/reg_ok_btn"
+        app:layout_constraintVertical_bias="0"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:id="@+id/reg_question_ll"
@@ -109,26 +113,15 @@
         app:layout_constraintGuide_percent="0.8442822" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reg_email_til"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/reg_caption_tv"
+        style="@style/AppTheme.StartDark.TextCaption"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:theme="@style/TextInputLayoutAppearance"
-        app:layout_constraintEnd_toEndOf="@id/guideline_right_inputs"
-        app:layout_constraintStart_toStartOf="@id/guideline_left_inputs"
-        app:layout_constraintTop_toBottomOf="@id/reg_question_ll"
-        tools:layout_editor_absoluteY="405dp">
-
-        <EditText
-            android:id="@+id/reg_email_te"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableStart="@drawable/ic_login_person"
-            android:drawablePadding="4dp"
-            android:hint="@string/reg_e_mail" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:text="@string/check_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_top_caption" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_pwd_til"
@@ -145,7 +138,9 @@
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_https_48px"
             android:drawablePadding="4dp"
-            android:hint="@string/pwd_hint" />
+            android:hint="@string/pwd_hint"
+            android:inputType="textPassword"
+            tools:ignore="Autofill" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,7 +159,9 @@
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_https_48px"
             android:drawablePadding="4dp"
-            android:hint="@string/reg_confirm_password" />
+            android:hint="@string/reg_confirm_password"
+            android:inputType="textPassword"
+            tools:ignore="Autofill" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,17 +177,28 @@
         app:layout_constraintStart_toStartOf="@id/guideline_left_inputs"
         app:layout_constraintTop_toBottomOf="@id/reg_pwdconfirm_til" />
 
-    <ImageView
-        android:id="@+id/reg_bottom_iv"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/reg_email_til"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="41dp"
-        android:src="@drawable/ic_t2t_reg_bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right_pic2"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left_pic2"
-        app:layout_constraintTop_toBottomOf="@+id/reg_ok_btn"
-        app:layout_constraintVertical_bias="0" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right_inputs"
+        app:layout_constraintStart_toStartOf="@id/guideline_left_inputs"
+        app:layout_constraintTop_toBottomOf="@id/reg_question_ll"
+        tools:layout_editor_absoluteY="405dp">
+
+        <EditText
+            android:id="@+id/reg_email_te"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_login_person"
+            android:drawablePadding="4dp"
+            android:hint="@string/reg_e_mail"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left_pic2"

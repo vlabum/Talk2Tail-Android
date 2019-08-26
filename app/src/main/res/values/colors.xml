@@ -7,11 +7,6 @@
     <color name="bottomNavigate">#84B3FE</color>
     <color name="bottomNavigateActive">#435072</color>
 
-    <color name="fab_background_no_pressed">#84B3FE</color>
-    <color name="fab_background_pressed">#FFFFFF</color>
-    <color name="fab_no_pressed">#FFFFFF</color>
-    <color name="fab_pressed">#FE8484</color>
-
     <color name="background">#28314C</color>
     <color name="actionBarColor">#34436D</color>
 
@@ -27,4 +22,10 @@
     <color name="colorButtonTextcolor">#FFF</color>
 
     <color name="red">#FF0000</color>
+
+    <color name="fabMenuLine">#A2B2C1</color>
+    <color name="fabBackgroundMenu">#ECF0F5</color>
+    <color name="fabBackground">#84B3FE</color>
+    <color name="fabItem">#FFFFFF</color>
+
 </resources>

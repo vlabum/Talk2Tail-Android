@@ -27,6 +27,11 @@
     <string name="contacts_menu_title">Контакты</string>
     <string name="oops_text">Ой! Похоже вы еще\nне добавили\nни одной собаки…</string>
     <string name="change_it">Исправить это</string>
+    <string name="fab_menu_caption">Добавить:</string>
+    <string name="fab_menu_add_dog">Питомца</string>
+    <string name="fab_menu_add_audio">Аудиозапись</string>
+    <string name="fab_menu_add_event">Событие</string>
+    <string name="fab_menu_add_task">Задачу</string>
 
 
 </resources>
