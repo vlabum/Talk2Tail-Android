@@ -27,6 +27,11 @@
     <string name="contacts_menu_title">Contacts</string>
     <string name="oops_text">Oops!\nYou don\'t have\na dog…</string>
     <string name="change_it">Change it</string>
+    <string name="fab_menu_caption">Add:</string>
+    <string name="fab_menu_add_dog">Dog</string>
+    <string name="fab_menu_add_audio">Audio</string>
+    <string name="fab_menu_add_event">Event</string>
+    <string name="fab_menu_add_task">Task</string>
 
 
 </resources>
