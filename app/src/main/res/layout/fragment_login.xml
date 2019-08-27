@@ -76,7 +76,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_curve_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_curve_right"
@@ -101,7 +102,9 @@
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_https_48px"
             android:drawablePadding="4dp"
-            android:hint="@string/pwd_hint" />
+            android:hint="@string/pwd_hint"
+            android:inputType="textPassword"
+            tools:ignore="Autofill" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,7 +124,9 @@
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_login_person"
             android:drawablePadding="4dp"
-            android:hint="@string/login_hint" />
+            android:hint="@string/login_hint"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

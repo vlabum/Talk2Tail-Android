@@ -2,9 +2,20 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="captions_text_size">18sp</dimen>
+    <dimen name="captions_text_size">20sp</dimen>
     <dimen name="inputs_text_size">12sp</dimen>
     <dimen name="info_text_size">12sp</dimen>
     <dimen name="button_textSize">14sp</dimen>
+
+    <!-- FAB Menu -->
+    <dimen name="fabTransitionY">200dp</dimen>
+    <dimen name="fabCornerRadius">7dp</dimen>
+    <dimen name="fabMenuHeight">210dp</dimen>
+    <dimen name="fabMenuItemHeight">40dp</dimen>
+    <dimen name="fabMenuCaptionHeight">40dp</dimen>
+    <dimen name="fabMenuTextSize">16sp</dimen>
+    <dimen name="fabMenuMarginStartTV">14dp</dimen>
+    <dimen name="fabMenuMarginEndTV">28dp</dimen>
+    <dimen name="fabMenuMarginEndIV">14dp</dimen>
 
 </resources>
