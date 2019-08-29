@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Talk2Tail</string>
-    <string name="menu_dog_dashboard">Панель Собаки</string>
-    <string name="menu_dog_vaccination">Прививки Собаки</string>
-    <string name="menu_owner_dashboard">Панель Хозяина</string>
+    <string name="diary_menu_title">Дневник</string>
+    <string name="helpful_menu_title">Полезное</string>
+    <string name="tracker_menu_title">Трекер</string>
     <string name="this_is_dog_dashboard">Это панель собаки</string>
     <string name="this_is_dog_vaccination">Это прививки собаки</string>
     <string name="this_is_owner_dashboard">Это панель хозяина</string>
@@ -24,6 +24,14 @@
     <string name="are_you_registered">Уже зарегистрированы?</string>
     <string name="login">Войти</string>
     <string name="check_in_caption">Регистрация</string>
+    <string name="contacts_menu_title">Контакты</string>
+    <string name="oops_text">Ой! Похоже вы еще\nне добавили\nни одной собаки…</string>
+    <string name="change_it">Исправить это</string>
+    <string name="fab_menu_caption">Добавить:</string>
+    <string name="fab_menu_add_dog">Питомца</string>
+    <string name="fab_menu_add_audio">Аудиозапись</string>
+    <string name="fab_menu_add_event">Событие</string>
+    <string name="fab_menu_add_task">Задачу</string>
 
 
 </resources>

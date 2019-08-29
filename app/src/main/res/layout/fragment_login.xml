@@ -13,12 +13,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.16" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_right"
+    <Button
+        android:id="@+id/login_ok_btn"
+        style="@style/AppTheme.Button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8442822" />
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/button_shape"
+        android:text="@string/login_ok_btn"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_curve_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/login_pwd_til" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
@@ -68,30 +73,18 @@
         android:layout_height="0dp"
         android:src="@drawable/ic_t2t_login"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_curve_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        tools:ignore="ContentDescription" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_til"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_curve_right"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:theme="@style/TextInputLayoutAppearance"
-        app:layout_constraintEnd_toEndOf="@id/guideline_right"
-        app:layout_constraintStart_toStartOf="@id/guideline_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_bottom">
-
-        <EditText
-            android:id="@+id/login_te"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableStart="@drawable/ic_login_person"
-            android:drawablePadding="4dp"
-            android:hint="@string/login_hint" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8442822" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_pwd_til"
@@ -99,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:theme="@style/TextInputLayoutAppearance"
-        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintEnd_toEndOf="@id/guideline_curve_right"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/login_til">
 
@@ -109,21 +102,33 @@
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_https_48px"
             android:drawablePadding="4dp"
-            android:hint="@string/pwd_hint" />
+            android:hint="@string/pwd_hint"
+            android:inputType="textPassword"
+            tools:ignore="Autofill" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/login_ok_btn"
-        style="@style/AppTheme.Button"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_til"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/button_shape"
-        android:text="@string/login_ok_btn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/login_pwd_til" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:layout_constraintEnd_toEndOf="@id/guideline_curve_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottom">
+
+        <EditText
+            android:id="@+id/login_te"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableStart="@drawable/ic_login_person"
+            android:drawablePadding="4dp"
+            android:hint="@string/login_hint"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:id="@+id/remind_ll"

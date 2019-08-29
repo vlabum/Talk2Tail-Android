@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -12,16 +12,214 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <View
+        android:id="@+id/transparent_v"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp"
+        android:fitsSystemWindows="true"
+        android:visibility="gone" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fab_menu_cv"
+        android:layout_width="215dp"
+        android:layout_height="@dimen/fabMenuHeight"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="56dp"
+        android:backgroundTint="@color/fabBackgroundMenu"
+        android:elevation="12dp"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/fabCornerRadius"
+        app:cardElevation="12dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/caption_fab_menu_cv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fabMenuCaptionHeight"
+            android:backgroundTint="@color/fabBackgroundMenu"
+            app:cardCornerRadius="@dimen/fabCornerRadius"
+            app:cardElevation="0dp">
+
+            <TextView
+                android:id="@+id/caption_fab_menu_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:text="@string/fab_menu_caption"
+                android:textSize="@dimen/fabMenuTextSize"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_dog_fab_menu_cv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fabMenuItemHeight"
+            android:backgroundTint="@color/fabBackgroundMenu"
+            android:translationY="@dimen/fabTransitionY"
+            app:cardCornerRadius="@dimen/fabCornerRadius"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndIV"
+                android:src="@drawable/ic_t2t_fab_dog_menu"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/add_dog_fab_menu_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndTV"
+                android:text="@string/fab_menu_add_dog"
+                android:textSize="@dimen/fabMenuTextSize" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndIV"
+                android:background="@color/fabMenuLine" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_audio_fab_menu_cv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fabMenuItemHeight"
+            android:backgroundTint="@color/fabBackgroundMenu"
+            android:translationY="@dimen/fabTransitionY"
+            app:cardCornerRadius="@dimen/fabCornerRadius"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndIV"
+                android:src="@drawable/ic_t2t_fab_audio_menu"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/add_audio_fab_menu_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndTV"
+                android:text="@string/fab_menu_add_audio"
+                android:textSize="@dimen/fabMenuTextSize" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndIV"
+                android:background="@color/fabMenuLine" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_event_fab_menu_cv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fabMenuItemHeight"
+            android:backgroundTint="@color/fabBackgroundMenu"
+            android:translationY="@dimen/fabTransitionY"
+            app:cardCornerRadius="@dimen/fabCornerRadius"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndIV"
+                android:src="@drawable/ic_t2t_fab_event_menu"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/add_event_fab_menu_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndTV"
+                android:text="@string/fab_menu_add_event"
+                android:textSize="@dimen/fabMenuTextSize" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndIV"
+                android:background="@color/fabMenuLine" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_task_fab_menu_cv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fabMenuItemHeight"
+            android:backgroundTint="@color/fabBackgroundMenu"
+            android:translationY="@dimen/fabTransitionY"
+            app:cardCornerRadius="@dimen/fabCornerRadius"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndIV"
+                android:src="@drawable/ic_t2t_fab_task_menu"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/add_task_fab_menu_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/fabMenuMarginStartTV"
+                android:layout_marginEnd="@dimen/fabMenuMarginEndTV"
+                android:text="@string/fab_menu_add_task"
+                android:textSize="@dimen/fabMenuTextSize" />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
+        android:layout_gravity="bottom"
+        android:paddingStart="0dp"
+        android:paddingEnd="80dp"
+        android:theme="@style/BNVTheme"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@drawable/bottom_navigation_colors"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- FAB Menu -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/owner_dashboard_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:theme="@style/FABTheme"
+        app:elevation="12dp"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

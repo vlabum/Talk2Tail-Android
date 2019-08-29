@@ -15,7 +15,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Scheduler;
 import ru.terrakok.cicerone.Router;
-import timber.log.Timber;
 
 @InjectViewState
 public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
@@ -86,7 +85,4 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
         router.exit();
     }
 
-    public void onFabClick() {
-        Timber.d("FAB clicked");
-    }
 }

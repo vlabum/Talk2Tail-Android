@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Talk2Tail</string>
-    <string name="menu_dog_dashboard">Dog Dashboard</string>
-    <string name="menu_dog_vaccination">Dog Vaccination</string>
-    <string name="menu_owner_dashboard">Owner Dashboard</string>
+    <string name="diary_menu_title">Diary</string>
+    <string name="helpful_menu_title">Helpful</string>
+    <string name="tracker_menu_title">Tracker</string>
     <string name="this_is_dog_dashboard">This is Dog Dashboard</string>
     <string name="this_is_dog_vaccination">This is Dog Vaccination</string>
     <string name="this_is_owner_dashboard">This is Owner Dashboard</string>
@@ -23,6 +23,14 @@
     <string name="are_you_registered">Are you registered?</string>
     <string name="login">Login</string>
     <string name="check_in_caption">Check in</string>
+    <string name="contacts_menu_title">Contacts</string>
+    <string name="oops_text">Oops!\nYou don\'t have\na dog…</string>
+    <string name="change_it">Change it</string>
+    <string name="fab_menu_caption">Add:</string>
+    <string name="fab_menu_add_dog">Dog</string>
+    <string name="fab_menu_add_audio">Audio</string>
+    <string name="fab_menu_add_event">Event</string>
+    <string name="fab_menu_add_task">Task</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
