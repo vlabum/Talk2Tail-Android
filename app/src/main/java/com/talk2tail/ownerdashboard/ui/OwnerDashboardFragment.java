@@ -4,25 +4,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.GridLayout;
 
 import androidx.fragment.app.Fragment;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.ownerdashboard.presenter.OwnerDashboardPresenter;
+import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
 import com.talk2tail.ownerdashboard.view.OwnerDashboardView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -34,10 +35,8 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     @InjectPresenter
     OwnerDashboardPresenter presenter;
 
-    @BindView(R.id.owner_dashboard_text)
-    protected TextView textView;
-    @BindView(R.id.owner_dashboard_fab)
-    protected FloatingActionButton fab;
+    @BindView(R.id.dog_grid_layout)
+    GridLayout dogGidLayout;
 
     public OwnerDashboardFragment() {
         // Required empty public constructor
@@ -63,6 +62,19 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     }
 
     @Override
+    public void addDogs(List<DogItemDTO> dogs) {
+        for (int i = 0; i < dogs.size(); i++) {
+            final DogItemView v = new DogItemView(getContext(), i);
+            App.getInstance().getAppComponent().inject(v);
+            v.setName(dogs.get(i).getDogName());
+            v.setAge(dogs.get(i).getDogAge() +" лет");
+            v.setWeight(dogs.get(i).getWeight() +" кг");
+            v.setPhoto(dogs.get(i).getPhotoUrl());
+            dogGidLayout.addView(v);
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -74,8 +86,4 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         return true;
     }
 
-    @OnClick(R.id.owner_dashboard_fab)
-    protected void fabClick() {
-        presenter.onFabClick();
-    }
 }

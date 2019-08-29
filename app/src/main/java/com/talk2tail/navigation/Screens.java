@@ -57,9 +57,4 @@ public class Screens {
         }
     }
 
-//    public static class MultidogScreen extends SupportAppScreen {
-//        public Fragment getFragment() {
-//            return new MultidogFragment();
-//        }
-//    }
 }

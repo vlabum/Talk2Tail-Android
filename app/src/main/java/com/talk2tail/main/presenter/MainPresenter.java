@@ -45,6 +45,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     public void goToMultidogScreen() {
-//        router.navigateTo(new Screens.MultidogScreen());
+        router.navigateTo(new Screens.OwnerDashboardScreen());
     }
 }

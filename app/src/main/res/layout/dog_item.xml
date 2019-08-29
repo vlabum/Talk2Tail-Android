@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.talk2tail.common.ui.CircleImageView
+        android:id="@+id/dog_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/simpledog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.talk2tail.common.ui.CircleImageView
+        android:id="@+id/dog_circle_first"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@color/dogCircleColorPink"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="@id/dog_photo"
+        app:layout_constraintBottom_toBottomOf="@id/dog_photo"
+        android:background="@android:color/transparent"/>
+
+    <com.talk2tail.common.ui.CircleImageView
+        android:id="@+id/dog_circle_second"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@color/dogCircleColorPurple"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="@id/dog_photo"
+        app:layout_constraintBottom_toBottomOf="@id/dog_photo"
+        android:background="@android:color/transparent"/>
+
+    <com.talk2tail.common.ui.CircleImageView
+        android:id="@+id/dog_circle_third"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@color/dogCircleColorBlue"
+        app:layout_constraintStart_toStartOf="@id/dog_photo"
+        app:layout_constraintBottom_toBottomOf="@id/dog_photo"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/dog_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:text="Кукусик"
+        app:layout_constraintTop_toBottomOf="@id/dog_photo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/dog_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:text="11,7 лет"
+        app:layout_constraintStart_toStartOf="@id/dog_photo"
+        app:layout_constraintTop_toBottomOf="@id/dog_name" />
+
+    <TextView
+        android:id="@+id/dog_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:text="28,9 кг"
+        app:layout_constraintStart_toStartOf="@id/dog_photo"
+        app:layout_constraintTop_toBottomOf="@id/dog_age"
+        />
+
+    <ImageView
+        android:id="@+id/weights"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_t2t_weights"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/dog_weight"
+        app:layout_constraintTop_toTopOf="@id/dog_weight"
+        app:layout_constraintBottom_toBottomOf="@id/dog_weight"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

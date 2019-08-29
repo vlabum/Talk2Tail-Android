@@ -16,4 +16,8 @@
     <color name="colorButtonTextcolor">#FFF</color>
 
     <color name="red">#FF0000</color>
+
+    <color name="dogCircleColorBlue">#89C6D3</color>
+    <color name="dogCircleColorPurple">#AE9990</color>
+    <color name="dogCircleColorPink">#EDA58A</color>
 </resources>

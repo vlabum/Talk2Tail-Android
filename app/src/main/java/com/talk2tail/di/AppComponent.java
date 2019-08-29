@@ -9,6 +9,7 @@ import com.talk2tail.login.presenter.LoginPresenter;
 import com.talk2tail.login.ui.LoginActivity;
 import com.talk2tail.main.presenter.MainPresenter;
 import com.talk2tail.main.ui.MainActivity;
+import com.talk2tail.ownerdashboard.ui.DogItemView;
 import com.talk2tail.ownerdashboard.presenter.OwnerDashboardPresenter;
 
 import javax.inject.Singleton;
@@ -33,5 +34,5 @@ public interface AppComponent {
 
     void inject(LoginActivity loginActivity);
 
-
+    void inject(DogItemView v);
 }
