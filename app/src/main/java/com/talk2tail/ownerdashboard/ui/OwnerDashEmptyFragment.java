@@ -14,9 +14,12 @@ import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.ownerdashboard.presenter.OwnerDashboardPresenter;
+import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
 import com.talk2tail.ownerdashboard.view.OwnerDashboardView;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -64,4 +67,8 @@ public class OwnerDashEmptyFragment extends MvpAppCompatFragment implements Owne
         return true;
     }
 
+    @Override
+    public void addDogs(List<DogItemDTO> dogs) {
+
+    }
 }
