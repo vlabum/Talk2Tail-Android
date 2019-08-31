@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -37,6 +39,9 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
     OwnerDashboardPresenter presenter;
     private View view;
     private Unbinder unbinder;
+
+    @BindView(R.id.owner_one_grid_layout)
+    GridLayout dogGridLayout;
 
     public OwnerDashOneFragment() {
         // Required empty public constructor
@@ -85,6 +90,12 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
 
     @Override
     public void addDogs(List<DogItemDTO> dogs) {
-
+        final DogItemBigView v = new DogItemBigView(getContext());
+        App.getInstance().getAppComponent().inject(v);
+        v.setName(dogs.get(0).getDogName());
+        v.setAge(dogs.get(0).getDogAge() + " лет");
+        v.setWeight(dogs.get(0).getWeight() + " кг");
+        v.setPhoto(dogs.get(0).getPhotoUrl());
+        dogGridLayout.addView(v);
     }
 }
