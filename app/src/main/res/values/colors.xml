@@ -32,4 +32,7 @@
     <color name="fabBackground">#84B3FE</color>
     <color name="fabItem">#FFFFFF</color>
 
+    <color name="menuItemDisabledTextColor">#84B3FE</color>
+    <color name="menuItemEnabledTextColor">#FFFFFF</color>
+
 </resources>

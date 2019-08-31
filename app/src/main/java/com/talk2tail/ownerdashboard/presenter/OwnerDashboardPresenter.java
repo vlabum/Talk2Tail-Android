@@ -85,4 +85,15 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
         router.exit();
     }
 
+    public void showHideClicked(boolean isEnabled) {
+        getViewState().clearDogs();
+        if (isEnabled) {
+            getViewState().addDogs(dogs.subList(0, DEFAULT_COUNT));
+            getViewState().hideDogs();
+        }
+        else {
+            getViewState().addDogs(dogs);
+            getViewState().showAllDogs();
+        }
+    }
 }

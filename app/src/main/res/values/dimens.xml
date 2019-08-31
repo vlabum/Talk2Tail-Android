@@ -18,4 +18,6 @@
     <dimen name="fabMenuMarginEndTV">28dp</dimen>
     <dimen name="fabMenuMarginEndIV">14dp</dimen>
 
+    <dimen name="bottomNavigationMenuHeight">55dp</dimen>
+
 </resources>

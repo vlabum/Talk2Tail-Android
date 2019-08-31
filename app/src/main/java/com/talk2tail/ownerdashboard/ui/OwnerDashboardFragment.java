@@ -1,5 +1,6 @@
 package com.talk2tail.ownerdashboard.ui;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.google.android.material.button.MaterialButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.ui.BackButtonListener;
@@ -24,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -37,6 +40,13 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
 
     @BindView(R.id.dog_grid_layout)
     GridLayout dogGidLayout;
+
+    @BindView(R.id.dog_find_btn)
+    MaterialButton findButton;
+    @BindView(R.id.dog_filter_btn)
+    MaterialButton filterButton;
+    @BindView(R.id.dog_show_all_btn)
+    MaterialButton showButton;
 
     public OwnerDashboardFragment() {
         // Required empty public constructor
@@ -72,6 +82,27 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
             v.setPhoto(dogs.get(i).getPhotoUrl());
             dogGidLayout.addView(v);
         }
+        dogGidLayout.animate().alpha(1.0f).setDuration(500);
+    }
+
+    @Override
+    public void showAllDogs() {
+        showButton.setIcon(getResources().getDrawable(R.drawable.ic_arrow_up));
+        showButton.setIconTint(ColorStateList.valueOf(getResources().getColor(R.color.menuItemEnabledTextColor)));
+        showButton.setTextColor(getResources().getColor(R.color.menuItemEnabledTextColor));
+    }
+
+    @Override
+    public void hideDogs() {
+        showButton.setIcon(getResources().getDrawable(R.drawable.ic_arrow_down));
+        showButton.setIconTint(ColorStateList.valueOf(getResources().getColor(R.color.menuItemDisabledTextColor)));
+        showButton.setTextColor(getResources().getColor(R.color.menuItemDisabledTextColor));
+    }
+
+    @Override
+    public void clearDogs() {
+        dogGidLayout.setAlpha(0);
+        dogGidLayout.removeAllViews();
     }
 
     @Override
@@ -84,6 +115,12 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     public Boolean backClick() {
         presenter.backClick();
         return true;
+    }
+
+    @OnClick(R.id.dog_show_all_btn)
+    public void switchShowHideDogs() {
+        final boolean isEnabled = showButton.getTextColors().getDefaultColor() == getResources().getColor(R.color.menuItemEnabledTextColor);
+        presenter.showHideClicked(isEnabled);
     }
 
 }

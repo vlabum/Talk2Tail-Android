@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static android.view.Gravity.CENTER;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -63,10 +64,21 @@ public class DogItemView extends LinearLayout implements IDogItemView {
         setGravity(CENTER);
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
 //        params.setGravity(CENTER);
-        int marginInDp = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-                        .getDisplayMetrics());
-        params.setMargins(marginInDp, marginInDp, marginInDp, marginInDp);
+        if (getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE) {
+            int marginInDp = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 16, getResources()
+                            .getDisplayMetrics());
+            int marginInDpSides = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 48, getResources()
+                            .getDisplayMetrics());
+            params.setMargins(marginInDpSides, marginInDp, marginInDpSides, marginInDp);
+        }
+        else {
+            int marginInDp = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 16, getResources()
+                            .getDisplayMetrics());
+            params.setMargins(marginInDp, marginInDp, marginInDp, marginInDp);
+        }
         params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
         params.width = 0;
         params.height = WRAP_CONTENT;
@@ -82,7 +94,7 @@ public class DogItemView extends LinearLayout implements IDogItemView {
 
     @Override
     public void setPhoto(String url) {
-//        imageLoader.loadInto(url, dogImageView);  //TODO: Glide меняет расположение
+        imageLoader.loadInto(url, dogImageView);
     }
 
     @Override
