@@ -5,15 +5,22 @@ import android.net.Uri;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.talk2tail.R;
+import com.talk2tail.common.model.event.CareEvent;
+import com.talk2tail.common.model.event.DogEvent;
+import com.talk2tail.common.model.event.HealthEvent;
+import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.event.TreatmentEvent;
 import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
 import com.talk2tail.ownerdashboard.view.OwnerDashboardView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Scheduler;
+import lombok.Getter;
 import ru.terrakok.cicerone.Router;
 
 @InjectViewState
@@ -27,6 +34,9 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
 
     final List<DogItemDTO> dogs = new ArrayList<>();
 
+    @Getter
+    final List<TalkToTailEvent> events = new ArrayList<>();
+
     public OwnerDashboardPresenter(Scheduler mainThreadScheduler) {
         this.mainThreadScheduler = mainThreadScheduler;
     }
@@ -35,6 +45,7 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         dogs.addAll(getTestData());
+        generateTestEvents();
         getViewState().addDogs(dogs.subList(0, DEFAULT_COUNT));
     }
 
@@ -85,4 +96,11 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
         router.exit();
     }
 
+    private void generateTestEvents() {
+        events.add(new CareEvent("Кукусик", "Покормить Кукусика. Посмотреть, будет ли кукситься.", new Date()));
+        events.add(new DogEvent("Кудабля", "Найти Кудаблю.", new Date()));
+        events.add(new TreatmentEvent("Шарик", "Выкатить шарика из под дивана.", new Date()));
+        events.add(new HealthEvent("Травка", "Подстричь травку.", new Date()));
+        events.add(new DogEvent("Кудабля", "Проверить, на месте ли Кудабля.", new Date()));
+    }
 }

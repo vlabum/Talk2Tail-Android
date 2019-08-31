@@ -32,4 +32,10 @@
     <color name="fabBackground">#84B3FE</color>
     <color name="fabItem">#FFFFFF</color>
 
+    <!-- Event Cards' Colors -->
+    <color name="eventCardCare">#88C6D3</color>
+    <color name="eventCardDog">#AE9990</color>
+    <color name="eventCardTreatment">#EDA58A</color>
+    <color name="eventCardHealth">#C6C884</color>
+
 </resources>
