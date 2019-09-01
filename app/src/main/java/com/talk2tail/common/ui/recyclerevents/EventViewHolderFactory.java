@@ -14,11 +14,11 @@ import com.talk2tail.common.model.event.TreatmentEvent;
 
 public class EventViewHolderFactory {
 
-    private static final int UNCNOWN_EVENT = 0;
+    private static final int UNKNOWN_EVENT = 0;
     private static final int CARE_EVENT = 1;
     private static final int DOG_EVENT = 2;
     private static final int HEATH_EVENT = 3;
-    private static final int TREATMENT_EVEN = 4;
+    private static final int TREATMENT_EVENT = 4;
 
     public ViewHolder create(@NonNull ViewGroup parent, int viewType) {
 
@@ -35,9 +35,12 @@ public class EventViewHolderFactory {
                 return new ViewHolderHealthEvent(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.health_event_item, parent, false));
 
-            default: //TREATMENT_EVEN
+            case TREATMENT_EVENT:
                 return new ViewHolderTreatmentEvent(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.treatment_event_item, parent, false));
+
+            default:
+                return null;
         }
 
     }
@@ -54,9 +57,9 @@ public class EventViewHolderFactory {
             return HEATH_EVENT;
 
         if (event instanceof TreatmentEvent)
-            return TREATMENT_EVEN;
+            return TREATMENT_EVENT;
 
-        return UNCNOWN_EVENT;
+        return UNKNOWN_EVENT;
     }
 
 }
