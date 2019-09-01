@@ -37,5 +37,6 @@
     <color name="eventCardDog">#AE9990</color>
     <color name="eventCardTreatment">#EDA58A</color>
     <color name="eventCardHealth">#C6C884</color>
+    <color name="eventCardLight">#33FFFFFF</color>
 
 </resources>

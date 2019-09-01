@@ -9,12 +9,19 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/care_event_cv"
-        android:layout_width="115dp"
-        android:layout_height="127dp"
+        android:layout_width="@dimen/cardEventWidth"
+        android:layout_height="@dimen/cardEventHeight"
         android:backgroundTint="@color/eventCardCare"
         app:cardCornerRadius="7dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cardEventHeightLight"
+            android:layout_gravity="bottom"
+            android:src="@drawable/shape_rectangle_white"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/care_event_iv"
@@ -51,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|bottom"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/cardEventMarginBottom"
             android:textSize="10sp"
             tools:text="16:30" />
 
@@ -61,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/cardEventMarginBottom"
             android:textSize="10sp"
             tools:text="01:08" />
 

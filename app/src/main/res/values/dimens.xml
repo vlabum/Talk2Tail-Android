@@ -20,4 +20,9 @@
 
     <!-- Event RecyclerView -->
     <dimen name="rvEventsLeftMargin">15dp</dimen>
+    <dimen name="cardEventHeight">128dp</dimen>
+    <dimen name="cardEventWidth">115dp</dimen>
+    <dimen name="cardEventHeightLight">26dp</dimen>
+    <dimen name="cardEventMarginBottom">6dp</dimen>
+    <dimen name="cardEventRecyclerBias">0.4</dimen>
 </resources>
