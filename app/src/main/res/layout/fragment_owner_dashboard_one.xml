@@ -7,6 +7,14 @@
     android:theme="@style/AppTheme"
     tools:context=".dogdashboard.ui.DogDashboardFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:src="@drawable/shape_rectangle"
+        app:layout_constraintBottom_toTopOf="@id/h_center_gl"
+        tools:ignore="ContentDescription"
+        tools:layout_editor_absoluteX="0dp" />
+
     <GridLayout
         android:id="@+id/owner_one_grid_layout"
         android:layout_width="match_parent"
@@ -15,6 +23,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_center_gl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/events_owner_one_rv"
