@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
@@ -30,10 +31,16 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
+import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+
 public class OwnerDashboardFragment extends MvpAppCompatFragment implements OwnerDashboardView, BackButtonListener {
+    private static final int VERT_ROW_COUNT = 3;
+    private static final int HOR_ROW_COUNT = 4;
 
     private View view;
     private Unbinder unbinder;
+    private int columnsCount;
+    private boolean allDogsEnabled = false;
 
     @InjectPresenter
     OwnerDashboardPresenter presenter;
@@ -41,6 +48,8 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     @BindView(R.id.dog_grid_layout)
     GridLayout dogGidLayout;
 
+    @BindView(R.id.dog_menu_layout)
+    LinearLayout menuLayout;
     @BindView(R.id.dog_find_btn)
     MaterialButton findButton;
     @BindView(R.id.dog_filter_btn)
@@ -68,11 +77,22 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_owner_dashboard, container, false);
         unbinder = ButterKnife.bind(this, view);
+        if (getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE) {
+            columnsCount = HOR_ROW_COUNT;
+        }
+        else {
+            columnsCount = VERT_ROW_COUNT;
+        }
+
         return view;
     }
 
     @Override
     public void addDogs(List<DogItemDTO> dogs) {
+        if (!allDogsEnabled) {
+            dogs = dogs.subList(0, columnsCount);
+        }
+
         for (int i = 0; i < dogs.size(); i++) {
             final DogItemView v = new DogItemView(getContext(), i);
             App.getInstance().getAppComponent().inject(v);
@@ -90,6 +110,7 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         showButton.setIcon(getResources().getDrawable(R.drawable.ic_arrow_up));
         showButton.setIconTint(ColorStateList.valueOf(getResources().getColor(R.color.menuItemEnabledTextColor)));
         showButton.setTextColor(getResources().getColor(R.color.menuItemEnabledTextColor));
+        allDogsEnabled = true;
     }
 
     @Override
@@ -97,12 +118,18 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         showButton.setIcon(getResources().getDrawable(R.drawable.ic_arrow_down));
         showButton.setIconTint(ColorStateList.valueOf(getResources().getColor(R.color.menuItemDisabledTextColor)));
         showButton.setTextColor(getResources().getColor(R.color.menuItemDisabledTextColor));
+        allDogsEnabled = false;
     }
 
     @Override
     public void clearDogs() {
         dogGidLayout.setAlpha(0);
         dogGidLayout.removeAllViews();
+    }
+
+    @Override
+    public void initGrid() {
+        dogGidLayout.setColumnCount(columnsCount);
     }
 
     @Override
@@ -119,8 +146,7 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
 
     @OnClick(R.id.dog_show_all_btn)
     public void switchShowHideDogs() {
-        final boolean isEnabled = showButton.getTextColors().getDefaultColor() == getResources().getColor(R.color.menuItemEnabledTextColor);
-        presenter.showHideClicked(isEnabled);
+        presenter.showHideClicked(allDogsEnabled);
     }
 
 }

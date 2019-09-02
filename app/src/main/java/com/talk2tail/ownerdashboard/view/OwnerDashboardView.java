@@ -18,4 +18,6 @@ public interface OwnerDashboardView extends MvpView {
 
     void clearDogs();
 
+    void initGrid();
+
 }

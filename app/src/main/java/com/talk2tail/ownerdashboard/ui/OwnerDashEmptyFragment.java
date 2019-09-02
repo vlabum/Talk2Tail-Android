@@ -86,4 +86,10 @@ public class OwnerDashEmptyFragment extends MvpAppCompatFragment implements Owne
     public void clearDogs() {
 
     }
+
+    @Override
+    public void initGrid() {
+
+    }
+
 }

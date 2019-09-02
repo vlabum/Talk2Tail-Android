@@ -69,7 +69,7 @@ public class DogItemView extends LinearLayout implements IDogItemView {
                     TypedValue.COMPLEX_UNIT_DIP, 16, getResources()
                             .getDisplayMetrics());
             int marginInDpSides = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 48, getResources()
+                    TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                             .getDisplayMetrics());
             params.setMargins(marginInDpSides, marginInDp, marginInDpSides, marginInDp);
         }
