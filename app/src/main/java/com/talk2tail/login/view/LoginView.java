@@ -6,4 +6,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 @StateStrategyType(value = AddToEndSingleStrategy.class)
 public interface LoginView extends MvpView {
+    void temporaryOut(String response); //TODO: потом убрать
 }

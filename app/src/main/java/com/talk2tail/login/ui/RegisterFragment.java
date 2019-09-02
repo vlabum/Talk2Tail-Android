@@ -90,7 +90,10 @@ public class RegisterFragment extends MvpAppCompatFragment implements LoginView,
     }
 
     private void onClickRegOk() {
-        //TODO: do registration
+        String sEmail = email.getText().toString();
+        String sPwd = pwd.getText().toString();
+        String sConfirmPwd = confirmPwd.getText().toString();
+        presenter.registerUser(sEmail, sPwd, sConfirmPwd);
     }
 
     @Override
@@ -103,6 +106,11 @@ public class RegisterFragment extends MvpAppCompatFragment implements LoginView,
     public Boolean backClick() {
         presenter.backClick();
         return true;
+    }
+
+    @Override
+    public void temporaryOut(String response) {
+        email.setText(response);
     }
 
 }
