@@ -12,4 +12,12 @@ public interface OwnerDashboardView extends MvpView {
 
     void addDogs(List<DogItemDTO> dogs);
 
+    void showAllDogs();
+
+    void hideDogs();
+
+    void clearDogs();
+
+    void initGrid();
+
 }

@@ -1,6 +1,7 @@
 package com.talk2tail.main.ui;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -47,6 +48,7 @@ import ru.terrakok.cicerone.android.support.SupportAppNavigator;
 public class MainActivity extends MvpAppCompatActivity implements MainView, View.OnClickListener {
 
     private static long ANIMATION_DURATION = 130;
+    private static long SHOW_HIDE_ANIMATION_DURATION = 250;
     @BindView(R.id.transparent_v)
     protected View transparent;
 
@@ -201,7 +203,13 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.fabBackground)));
         fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_add_black_24dp));
         fab.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.fabItem)));
-        fab_menu_cv.setVisibility(View.GONE);
+        fab_menu_cv.animate().alpha(0).setDuration(SHOW_HIDE_ANIMATION_DURATION).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                fab_menu_cv.setVisibility(View.GONE);
+                fab_menu_cv.animate().setListener(null);
+            }
+        });
         transparent.setVisibility(View.GONE);
         // уберем пункты меню вниз, чтобы их не было видно
         // высота меню равна высоте заголовка + высота всех четырех пунктов
@@ -220,6 +228,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         fab.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.fabBackground)));
         fab_menu_cv.setVisibility(View.VISIBLE);
         transparent.setVisibility(View.VISIBLE);
+        fab_menu_cv.animate().alpha(1.0f).setDuration(SHOW_HIDE_ANIMATION_DURATION);
         // каждый пункт меню поднимем на свою высоту.
         float startPos = getResources().getDimension(R.dimen.fabMenuCaptionHeight);
         float heightItem = getResources().getDimension(R.dimen.fabMenuItemHeight);

@@ -25,4 +25,7 @@
     <dimen name="cardEventHeightLight">26dp</dimen>
     <dimen name="cardEventMarginBottom">6dp</dimen>
     <dimen name="cardEventRecyclerBias">0.4</dimen>
+
+    <dimen name="bottomNavigationMenuHeight">55dp</dimen>
+
 </resources>

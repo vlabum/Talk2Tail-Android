@@ -39,4 +39,7 @@
     <color name="eventCardHealth">#C6C884</color>
     <color name="eventCardLight">#33FFFFFF</color>
 
+    <color name="menuItemDisabledTextColor">#84B3FE</color>
+    <color name="menuItemEnabledTextColor">#FFFFFF</color>
+
 </resources>

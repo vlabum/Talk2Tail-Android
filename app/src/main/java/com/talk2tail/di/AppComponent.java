@@ -3,6 +3,7 @@ package com.talk2tail.di;
 import com.talk2tail.di.modules.AppModule;
 import com.talk2tail.di.modules.CiceroneModule;
 import com.talk2tail.di.modules.ImageModule;
+import com.talk2tail.di.modules.RepoModule;
 import com.talk2tail.dogdashboard.presenter.DogDashboardPresenter;
 import com.talk2tail.dogvaccination.presenter.DogVaccinationPresenter;
 import com.talk2tail.login.presenter.LoginPresenter;
@@ -18,7 +19,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {AppModule.class, ImageModule.class, CiceroneModule.class})
+@Component(modules = {AppModule.class, ImageModule.class, CiceroneModule.class, RepoModule.class})
 public interface AppComponent {
 
     void inject(DogDashboardPresenter dogDashboardPresenter);

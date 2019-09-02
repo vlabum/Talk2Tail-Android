@@ -98,4 +98,24 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
         v.setPhoto(dogs.get(0).getPhotoUrl());
         dogGridLayout.addView(v);
     }
+
+    @Override
+    public void showAllDogs() {
+
+    }
+
+    @Override
+    public void hideDogs() {
+
+    }
+
+    @Override
+    public void clearDogs() {
+
+    }
+
+    @Override
+    public void initGrid() {
+
+    }
 }

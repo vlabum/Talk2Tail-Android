@@ -7,14 +7,81 @@
     android:theme="@style/AppTheme.StartDark"
     tools:context=".dogdashboard.ui.DogDashboardFragment">
 
-    <GridLayout
-        android:id="@+id/dog_grid_layout"
+    <LinearLayout
+        android:id="@+id/dog_menu_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="3"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dog_find_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Найти собаку"
+            android:theme="@style/DogGridMenuButton"
+            app:cornerRadius="0dp"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:textColor="@color/menuItemDisabledTextColor"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dog_filter_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Сортировать"
+            android:theme="@style/DogGridMenuButton"
+            app:cornerRadius="0dp"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:textColor="@color/menuItemDisabledTextColor"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dog_show_all_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Все собаки"
+            android:theme="@style/DogGridMenuButton"
+            app:cornerRadius="0dp"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            app:iconGravity="textEnd"
+            app:icon="@drawable/ic_arrow_down"
+            app:iconTint="@color/menuItemDisabledTextColor"
+            android:textColor="@color/menuItemDisabledTextColor"
+            />
+
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/dog_menu_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <GridLayout
+            android:id="@+id/dog_grid_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"
+            app:layout_constraintTop_toTopOf="@+id/scroll_view"
+            app:layout_constraintStart_toStartOf="@+id/scroll_view"
+            app:layout_constraintEnd_toEndOf="@+id/scroll_view"
+            />
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -72,4 +72,25 @@ public class OwnerDashEmptyFragment extends MvpAppCompatFragment implements Owne
     public void addDogs(List<DogItemDTO> dogs) {
 
     }
+
+    @Override
+    public void showAllDogs() {
+
+    }
+
+    @Override
+    public void hideDogs() {
+
+    }
+
+    @Override
+    public void clearDogs() {
+
+    }
+
+    @Override
+    public void initGrid() {
+
+    }
+
 }

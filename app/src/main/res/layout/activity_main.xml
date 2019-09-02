@@ -5,12 +5,14 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".main.ui.MainActivity">
 
     <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"/>
 
     <View
         android:id="@+id/transparent_v"
@@ -31,7 +33,8 @@
         android:elevation="12dp"
         android:visibility="gone"
         app:cardCornerRadius="@dimen/fabCornerRadius"
-        app:cardElevation="12dp">
+        app:cardElevation="12dp"
+        android:alpha="0">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/caption_fab_menu_cv"
@@ -196,11 +199,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bottomNavigationMenuHeight"
         android:layout_gravity="bottom"
         android:paddingStart="0dp"
         android:paddingEnd="80dp"
-        android:theme="@style/BNVTheme"
+        android:background="@color/background"
         app:itemIconTint="@drawable/bottom_navigation_colors"
         app:itemTextColor="@drawable/bottom_navigation_colors"
         app:labelVisibilityMode="labeled"
@@ -219,7 +222,8 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
-        android:theme="@style/FABTheme"
+        app:shapeAppearanceOverlay="@drawable/fab_shape"
         app:elevation="12dp"
         app:srcCompat="@drawable/ic_add_black_24dp" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
