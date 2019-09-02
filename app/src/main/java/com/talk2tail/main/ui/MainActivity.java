@@ -173,7 +173,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_singledog) {
-            presenter.goToSingleScreen();
+            presenter.goToOwnerDashOne();
             return true;
         }
         if (id == R.id.menu_multidog) {

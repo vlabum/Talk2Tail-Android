@@ -11,6 +11,7 @@ import com.talk2tail.login.ui.LoginFragment;
 import com.talk2tail.login.ui.RegisterFragment;
 import com.talk2tail.main.ui.MainActivity;
 import com.talk2tail.ownerdashboard.ui.OwnerDashEmptyFragment;
+import com.talk2tail.ownerdashboard.ui.OwnerDashOneFragment;
 import com.talk2tail.ownerdashboard.ui.OwnerDashboardFragment;
 
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
@@ -61,6 +62,12 @@ public class Screens {
     public static class OwnerDashEmptyFragmentScreen extends SupportAppScreen {
         public Fragment getFragment() {
             return OwnerDashEmptyFragment.newInstance();
+        }
+    }
+
+    public static class OwnerDashOneFragmentScreen extends SupportAppScreen {
+        public Fragment getFragment() {
+            return OwnerDashOneFragment.newInstance();
         }
     }
 
