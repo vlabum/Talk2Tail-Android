@@ -1,10 +1,13 @@
 package com.talk2tail.ownerdashboard.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,11 +29,14 @@ import com.talk2tail.ownerdashboard.view.OwnerDashboardView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import devs.mulham.horizontalcalendar.HorizontalCalendar;
+import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerDashboardView, BackButtonListener {
@@ -58,11 +64,47 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
         return ownerDashboardPresenter;
     }
 
+    private HorizontalCalendar horizontalCalendar;
+
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_owner_dashboard_one, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+
+
+        /* start before 1 month from now */
+        Calendar startDate = Calendar.getInstance();
+        startDate.add(Calendar.MONTH, -1);
+
+        /* end after 1 month from now */
+        Calendar endDate = Calendar.getInstance();
+        endDate.add(Calendar.MONTH, 1);
+
+
+        horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
+                .range(startDate, endDate)
+                .datesNumberOnScreen(5)
+                .configure()
+                .formatTopText("MMM")
+                .formatMiddleText("dd")
+                .formatBottomText("EEE")
+                .textSize(14f, 24f, 14f)
+                .showTopText(true)
+                .showBottomText(true)
+                .textColor(Color.LTGRAY, Color.WHITE)
+                .end()
+                .build();
+
+        horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
+            @Override
+            public void onDateSelected(Calendar date, int position) {
+                Toast.makeText(getContext(), DateFormat.format("EEE, MMM d, yyyy", date) + " is selected!", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
         return view;
     }
 
