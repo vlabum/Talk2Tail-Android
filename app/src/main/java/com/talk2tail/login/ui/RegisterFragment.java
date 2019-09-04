@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -109,8 +110,12 @@ public class RegisterFragment extends MvpAppCompatFragment implements LoginView,
     }
 
     @Override
-    public void temporaryOut(String response) {
-        email.setText(response);
+    public void showToast(String message) {
+        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showErrorMessage(String message) {
+        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
 }

@@ -2,9 +2,10 @@ package com.talk2tail.common.model.repo;
 
 import com.talk2tail.common.model.INetworkStatus;
 import com.talk2tail.common.model.api.IDataSource;
-import com.talk2tail.common.model.api.RegisterUser;
-import com.talk2tail.common.model.entity.IRegisterUser;
-import com.talk2tail.common.model.entity.IRegisterUserResponse;
+import com.talk2tail.common.model.entity.api.LoginUser;
+import com.talk2tail.common.model.entity.api.LoginUserResponse;
+import com.talk2tail.common.model.entity.api.RegisterUser;
+import com.talk2tail.common.model.entity.api.RegisterUserResponse;
 
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
@@ -21,12 +22,20 @@ public class Repo implements IRepo {
     }
 
     @Override
-    public Single<IRegisterUserResponse> registerUser(IRegisterUser registerUser) {
-        if (networkStatus.isOnline() && registerUser instanceof RegisterUser) {
-            return dataSource.restAuthLogin((RegisterUser) registerUser).subscribeOn(Schedulers.io())
-                    .map(registerUserResponse -> registerUserResponse);
+    public Single<RegisterUserResponse> registerUser(RegisterUser registerUser) {
+        if (networkStatus.isOnline()) {
+            return dataSource.restAuthRegistration(registerUser).subscribeOn(Schedulers.io());
         }
+        //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
         return null;
     }
 
+    @Override
+    public Single<LoginUserResponse> loginUser(LoginUser loginUser) {
+        if (networkStatus.isOnline()) {
+            return dataSource.restAuthLogin(loginUser).subscribeOn(Schedulers.io());
+        }
+        //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
+        return null;
+    }
 }

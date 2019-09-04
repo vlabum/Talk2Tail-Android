@@ -74,8 +74,10 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
 
     private Unbinder unbinder;
 
-    public static Intent getMainIntent(Context context) {
-        return new Intent(context, MainActivity.class);
+    public static Intent getMainIntent(Context context, int countPets) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("countPets", countPets);
+        return intent;
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -125,6 +127,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         addAudio.setOnClickListener(this);
         addEvent.setOnClickListener(this);
         addTask.setOnClickListener(this);
+        int countPets = getIntent().getIntExtra("countPets", 0);
+        presenter.setCountPets(countPets);
     }
 
     @ProvidePresenter
@@ -171,18 +175,16 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menu_singledog) {
-            presenter.goToOwnerDashOne();
-            return true;
-        }
-        if (id == R.id.menu_multidog) {
-            presenter.goToMultidogScreen();
-            return true;
-        }
-        if (id == R.id.menu_nodog) {
-            presenter.goToOwnerDashEmpty();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.menu_singledog:
+                presenter.goToOwnerDashOne();
+                return true;
+            case R.id.menu_multidog:
+                presenter.goToMultiDogScreen();
+                return true;
+            case R.id.menu_nodog:
+                presenter.goToOwnerDashEmpty();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -89,12 +90,15 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
     }
 
     private void onClickCheckIn() {
-        presenter.goToChechInFragment();
+        presenter.goToCheckInFragment();
     }
 
     private void onClickLoginOk() {
+        String sLogin = login.getText().toString();
+        String sPwd = pwd.getText().toString();
+        presenter.loginUser(sLogin, sPwd);
         //TODO: check login
-        presenter.goToMainActivity();
+//        presenter.goToMainActivity();
     }
 
     @Override
@@ -110,7 +114,12 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
     }
 
     @Override
-    public void temporaryOut(String response) {
+    public void showToast(String response) {
         return;
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
