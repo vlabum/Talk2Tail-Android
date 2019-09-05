@@ -74,16 +74,20 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
     }
 
     public void loginUser(String email, String pwd) {
-        LoginUser loginUser = new LoginUser(email, pwd);
-        SingleCallbackWrapperLogin<LoginUserResponse> singleObserver = repo.loginUser(loginUser)
-                .observeOn(mainThreadScheduler)
-                .subscribeWith(new SingleCallbackWrapperLogin<LoginUserResponse>(getViewState()) {
-                    @Override
-                    public void onSuccess(LoginUserResponse loginUserResponse) {
-                        getViewState().showToast(loginUserResponse.getKey());
-                        comeIn(AppConstants.OWNER_DASH_ONE_DOG);
-                    }
-                });
+        if ("".equals(email)) { //TODO: этот if - временное явление
+            comeIn(AppConstants.OWNER_DASH_ONE_DOG);
+        } else {
+            LoginUser loginUser = new LoginUser(email, pwd);
+            SingleCallbackWrapperLogin<LoginUserResponse> singleObserver = repo.loginUser(loginUser)
+                    .observeOn(mainThreadScheduler)
+                    .subscribeWith(new SingleCallbackWrapperLogin<LoginUserResponse>(getViewState()) {
+                        @Override
+                        public void onSuccess(LoginUserResponse loginUserResponse) {
+                            getViewState().showToast(loginUserResponse.getKey());
+                            comeIn(AppConstants.OWNER_DASH_ONE_DOG);
+                        }
+                    });
+        }
     }
 
     private void comeIn(int countPets) {
