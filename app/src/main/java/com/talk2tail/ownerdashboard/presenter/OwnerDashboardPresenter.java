@@ -100,7 +100,7 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
         events.add(new CareEvent("Кукусик", "Покормить Кукусика. Посмотреть, будет ли кукситься.", new Date()));
         events.add(new DogEvent("Кудабля", "Найти Кудаблю.", new Date()));
         events.add(new TreatmentEvent("Шарик", "Выкатить шарика из под дивана.", new Date()));
-        events.add(new HealthEvent("Травка", "Подстричь травку.", new Date()));
-        events.add(new DogEvent("Кудабля", "Проверить, на месте ли Кудабля.", new Date()));
+        events.add(new HealthEvent("Травка", "Подстричь травку.", new Date(119, 8, 4)));
+        events.add(new DogEvent("Кудабля", "Проверить, на месте ли Кудабля.", new Date(119, 8, 4)));
     }
 }
