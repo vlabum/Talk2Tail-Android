@@ -12,4 +12,5 @@ public interface IRepo {
     Single<RegisterUserResponse> registerUser(RegisterUser registerUser);
 
     Single<LoginUserResponse> loginUser(LoginUser loginUser);
+
 }

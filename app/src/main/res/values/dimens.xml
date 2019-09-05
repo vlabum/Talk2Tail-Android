@@ -2,10 +2,15 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- text size -->
     <dimen name="captions_text_size">20sp</dimen>
     <dimen name="inputs_text_size">12sp</dimen>
     <dimen name="info_text_size">12sp</dimen>
     <dimen name="button_textSize">14sp</dimen>
+    <dimen name="calendarTopTextSize_float">14.0</dimen>
+    <dimen name="calendarMiddleTextSize_float">16.0</dimen>
+    <dimen name="calendarBottomTextSize_float">14.0</dimen>
 
     <!-- FAB Menu -->
     <dimen name="fabTransitionY">200dp</dimen>
