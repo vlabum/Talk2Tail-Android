@@ -109,4 +109,8 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
         return true;
     }
 
+    @Override
+    public void temporaryOut(String response) {
+        return;
+    }
 }

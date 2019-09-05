@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.talk2tail.App;
 import com.talk2tail.common.model.ISystemInfo;
+import com.talk2tail.common.model.api.IDataSource;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -58,18 +59,15 @@ public class ApiModule {
     }
 
     @Provides
-    public Retrofit retrofit(@Named("baseUrl") String baseUrl, Gson gson, OkHttpClient okHttpClient) {
+    public IDataSource retrofit(@Named("baseUrl") String baseUrl, Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
-                .build();
+                .build()
+                .create(IDataSource.class);
     }
 
-//    @Provides
-//    public IExampleSource exampleSource(Retrofit retrofit) {
-//        return retrofit.create(IExampleSource.class);
-//    }
 
 }

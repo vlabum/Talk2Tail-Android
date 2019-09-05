@@ -39,4 +39,8 @@
     <color name="eventCardHealth">#C6C884</color>
     <color name="eventCardLight">#33FFFFFF</color>
 
+    <!-- Calendar colors -->
+    <color name="calendarBackground">#FFFFFF</color>
+    <color name="calendarAccent">#28314C</color>
+
 </resources>

@@ -32,6 +32,8 @@
     <string name="fab_menu_add_audio">Аудиозапись</string>
     <string name="fab_menu_add_event">Событие</string>
     <string name="fab_menu_add_task">Задачу</string>
+    <string name="month">Месяц</string>
+    <string name="calendar">Календарь</string>
 
 
 </resources>

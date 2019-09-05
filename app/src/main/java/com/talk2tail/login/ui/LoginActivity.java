@@ -75,4 +75,8 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
         unbinder.unbind();
     }
 
+    @Override
+    public void temporaryOut(String response) {
+        return;
+    }
 }
