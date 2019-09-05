@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.talk2tail.ownerdashboard.view.OwnerDashboardView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -48,6 +50,8 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
 
     @BindView(R.id.owner_one_grid_layout)
     GridLayout dogGridLayout;
+    @BindView(R.id.month)
+    TextView monthTextView;
 
     public OwnerDashOneFragment() {
         // Required empty public constructor
@@ -82,6 +86,8 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
 
+        monthTextView.setText(new SimpleDateFormat("LLLL").format(Calendar.getInstance().getTime()));
+
 
         horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
                 .range(startDate, endDate)
@@ -101,6 +107,7 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
+                monthTextView.setText(new SimpleDateFormat("LLLL").format(date.getTime()));
                 Toast.makeText(getContext(), DateFormat.format("EEE, MMM d, yyyy", date) + " is selected!", Toast.LENGTH_SHORT).show();
             }
 
