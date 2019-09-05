@@ -39,8 +39,9 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        getViewState().initGrid();
+        getViewState().init();
         dogs.addAll(dashboardRepo.getGoodDoggies(4));
+        getViewState().initMenu(dogs.size());
         getViewState().addDogs(dogs);
     }
 
@@ -59,13 +60,32 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
 
     public void showHideClicked(boolean isEnabled) {
         getViewState().clearDogs();
-        if (isEnabled) {
-            getViewState().hideDogs();
-        }
-        else {
-            getViewState().showAllDogs();
-        }
+        getViewState().showAllDogs(!isEnabled);
         getViewState().addDogs(dogs);
     }
 
+    public void showHideSearch(boolean searchEnabled) {
+        getViewState().showSearch(!searchEnabled);
+    }
+
+    public void showHideFilter(boolean filterEnabled) {
+        getViewState().showFilter(!filterEnabled);
+    }
+
+    public void searchDogs(String query) {
+        final List<DogItemDTO> searchedDogs = new ArrayList<>();
+        getViewState().clearDogs();
+        getViewState().showAllDogs(true);
+        if (query.isEmpty()) {
+            searchedDogs.addAll(dogs);
+        }
+        else {
+            for (DogItemDTO dogItemDTO : dogs) {
+                if (dogItemDTO.getDogName().toLowerCase().contains(query.toLowerCase())) {
+                    searchedDogs.add(dogItemDTO);
+                }
+            }
+        }
+        getViewState().addDogs(searchedDogs);
+    }
 }

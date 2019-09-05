@@ -55,7 +55,6 @@ public class OwnerDashEmptyFragment extends MvpAppCompatFragment implements Owne
         return view;
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -70,27 +69,30 @@ public class OwnerDashEmptyFragment extends MvpAppCompatFragment implements Owne
 
     @Override
     public void addDogs(List<DogItemDTO> dogs) {
-
-    }
-
-    @Override
-    public void showAllDogs() {
-
-    }
-
-    @Override
-    public void hideDogs() {
-
     }
 
     @Override
     public void clearDogs() {
-
     }
 
     @Override
-    public void initGrid() {
+    public void showAllDogs(boolean isShow) {
+    }
 
+    @Override
+    public void showSearch(boolean isShow) {
+    }
+
+    @Override
+    public void showFilter(boolean isShow) {
+    }
+
+    @Override
+    public void init() {
+    }
+
+    @Override
+    public void initMenu(int count) {
     }
 
 }

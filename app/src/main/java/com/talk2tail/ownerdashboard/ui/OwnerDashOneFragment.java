@@ -100,22 +100,26 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
     }
 
     @Override
-    public void showAllDogs() {
-
-    }
-
-    @Override
-    public void hideDogs() {
-
-    }
-
-    @Override
     public void clearDogs() {
-
     }
 
     @Override
-    public void initGrid() {
+    public void showAllDogs(boolean isShow) {
+    }
 
+    @Override
+    public void showSearch(boolean isShow) {
+    }
+
+    @Override
+    public void showFilter(boolean isShow) {
+    }
+
+    @Override
+    public void init() {
+    }
+
+    @Override
+    public void initMenu(int count) {
     }
 }

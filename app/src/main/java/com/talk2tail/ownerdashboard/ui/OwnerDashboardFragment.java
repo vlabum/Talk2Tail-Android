@@ -1,13 +1,16 @@
 package com.talk2tail.ownerdashboard.ui;
 
+import android.animation.ObjectAnimator;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -40,18 +43,26 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     private View view;
     private Unbinder unbinder;
     private int columnsCount;
+
     private boolean allDogsEnabled = false;
+    private boolean searchEnabled = false;
+    private boolean filterEnabled = false;
 
     @InjectPresenter
     OwnerDashboardPresenter presenter;
 
     @BindView(R.id.dog_grid_layout)
-    GridLayout dogGidLayout;
+    GridLayout dogGridLayout;
 
     @BindView(R.id.dog_menu_layout)
     LinearLayout menuLayout;
-    @BindView(R.id.dog_find_btn)
-    MaterialButton findButton;
+    @BindView(R.id.dog_search_layout)
+    LinearLayout searchLayout;
+    @BindView(R.id.dog_search_view)
+    SearchView searchView;
+
+    @BindView(R.id.dog_search_btn)
+    MaterialButton searchButton;
     @BindView(R.id.dog_filter_btn)
     MaterialButton filterButton;
     @BindView(R.id.dog_show_all_btn)
@@ -83,14 +94,16 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         else {
             columnsCount = VERT_ROW_COUNT;
         }
-
         return view;
     }
 
     @Override
     public void addDogs(List<DogItemDTO> dogs) {
+        final int diffs = columnsCount - dogs.size();
         if (!allDogsEnabled) {
-            dogs = dogs.subList(0, columnsCount);
+            if (diffs < 0) {    //Собак больше, чем столбцов в строке, то обрезаем
+                dogs = dogs.subList(0, columnsCount);
+            }
         }
 
         for (int i = 0; i < dogs.size(); i++) {
@@ -100,36 +113,49 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
             v.setAge(dogs.get(i).getDogAge() +" лет");
             v.setWeight(dogs.get(i).getWeight() +" кг");
             v.setPhoto(dogs.get(i).getPhotoUrl());
-            dogGidLayout.addView(v);
+            dogGridLayout.addView(v);
         }
-        dogGidLayout.animate().alpha(1.0f).setDuration(500);
-    }
 
-    @Override
-    public void showAllDogs() {
-        showButton.setIcon(getResources().getDrawable(R.drawable.ic_arrow_up));
-        showButton.setIconTint(ColorStateList.valueOf(getResources().getColor(R.color.menuItemEnabledTextColor)));
-        showButton.setTextColor(getResources().getColor(R.color.menuItemEnabledTextColor));
-        allDogsEnabled = true;
-    }
+        fillEmptyCells(diffs);  //если собак меньше, чем столбцов - нужно вкостылить пустые вьюшки
 
-    @Override
-    public void hideDogs() {
-        showButton.setIcon(getResources().getDrawable(R.drawable.ic_arrow_down));
-        showButton.setIconTint(ColorStateList.valueOf(getResources().getColor(R.color.menuItemDisabledTextColor)));
-        showButton.setTextColor(getResources().getColor(R.color.menuItemDisabledTextColor));
-        allDogsEnabled = false;
+        dogGridLayout.animate().alpha(1.0f).setDuration(500);
     }
 
     @Override
     public void clearDogs() {
-        dogGidLayout.setAlpha(0);
-        dogGidLayout.removeAllViews();
+        dogGridLayout.setAlpha(0);
+        dogGridLayout.removeAllViews();
     }
 
     @Override
-    public void initGrid() {
-        dogGidLayout.setColumnCount(columnsCount);
+    public void showAllDogs(boolean isShow) {
+        showButton.setIcon(getResources().getDrawable( isShow ? R.drawable.ic_arrow_up : R.drawable.ic_arrow_down));
+        showButton.setIconTint(ColorStateList.valueOf(getResources().getColor( isShow ? R.color.menuItemEnabledTextColor : R.color.menuItemDisabledTextColor)));
+        showButton.setTextColor(getResources().getColor( isShow ? R.color.menuItemEnabledTextColor : R.color.menuItemDisabledTextColor));
+        allDogsEnabled = isShow;
+    }
+
+    @Override
+    public void showSearch(boolean isShow) {
+        searchButton.setTextColor(getResources().getColor( isShow ? R.color.menuItemEnabledTextColor : R.color.menuItemDisabledTextColor));
+        ObjectAnimator.ofFloat(searchLayout, "translationY", isShow ? searchLayout.getHeight() : -searchLayout.getHeight()).start();
+        searchEnabled = isShow;
+    }
+
+    @Override
+    public void showFilter(boolean isShow) {
+
+    }
+
+    @Override
+    public void init() {
+        initGrid();
+        initSearchView();
+    }
+
+    @Override
+    public void initMenu(int count) {
+        menuLayout.setVisibility(count > columnsCount ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -145,8 +171,55 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     }
 
     @OnClick(R.id.dog_show_all_btn)
-    public void switchShowHideDogs() {
+    public void showAllClicked() {
         presenter.showHideClicked(allDogsEnabled);
+    }
+
+    @OnClick(R.id.dog_search_btn)
+    public void searchClicked() {
+        presenter.showHideSearch(searchEnabled);
+    }
+
+    @OnClick(R.id.dog_filter_btn)
+    public void filterClicked() {
+        presenter.showHideFilter(filterEnabled);
+    }
+
+    private void initGrid() {
+        dogGridLayout.setColumnCount(columnsCount);
+    }
+
+    private void initSearchView() {
+        searchView.setOnClickListener(v -> presenter.searchDogs(searchView.getQuery().toString()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                presenter.searchDogs(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()) {
+                    presenter.searchDogs(newText);
+                }
+                return false;
+            }
+        });
+    }
+
+    private void fillEmptyCells(int emptyCellsCount) {
+        while (emptyCellsCount-- > 0) {
+            final LinearLayout vi = new LinearLayout(getContext());
+            final GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+            int marginInDp = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 16, getResources()
+                            .getDisplayMetrics());
+            params.setMargins(marginInDp, marginInDp, marginInDp, marginInDp);
+            vi.setLayoutParams(params);
+            vi.setVisibility(View.INVISIBLE);
+            dogGridLayout.addView(vi);
+        }
     }
 
 }

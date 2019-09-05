@@ -42,4 +42,6 @@
     <color name="menuItemDisabledTextColor">#84B3FE</color>
     <color name="menuItemEnabledTextColor">#FFFFFF</color>
 
+    <color name="textHintColor">#61000000</color>
+
 </resources>

@@ -10,14 +10,17 @@ import java.util.List;
 @StateStrategyType(value = AddToEndSingleStrategy.class)
 public interface OwnerDashboardView extends MvpView {
 
+    void init();
+
+    void initMenu(int count);
+
     void addDogs(List<DogItemDTO> dogs);
-
-    void showAllDogs();
-
-    void hideDogs();
 
     void clearDogs();
 
-    void initGrid();
+    void showAllDogs(boolean isShow);
 
+    void showSearch(boolean isShow);
+
+    void showFilter(boolean isShow);
 }

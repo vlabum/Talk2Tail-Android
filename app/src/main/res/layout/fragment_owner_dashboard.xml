@@ -7,6 +7,54 @@
     android:theme="@style/AppTheme.StartDark"
     tools:context=".dogdashboard.ui.DogDashboardFragment">
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/dog_menu_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <GridLayout
+            android:id="@+id/dog_grid_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"
+            app:layout_constraintTop_toTopOf="@+id/scroll_view"
+            app:layout_constraintStart_toStartOf="@+id/scroll_view"
+            app:layout_constraintEnd_toEndOf="@+id/scroll_view"
+            />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/dog_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/dog_menu_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/actionBarColor"
+        android:backgroundTint="@color/actionBarColor"
+        >
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/dog_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:queryHint="Кличка собаки"
+            app:searchIcon="@drawable/ic_search"
+            app:closeIcon="@drawable/ic_close_black_24dp"
+            android:layout_margin="16dp"
+            android:theme="@style/SearchViewStyle"
+            app:iconifiedByDefault="false"
+            />
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/dog_menu_layout"
         android:layout_width="match_parent"
@@ -18,7 +66,7 @@
         >
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/dog_find_btn"
+            android:id="@+id/dog_search_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -59,29 +107,6 @@
             android:textColor="@color/menuItemDisabledTextColor"
             />
 
-
     </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/dog_menu_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-
-        <GridLayout
-            android:id="@+id/dog_grid_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"
-            app:layout_constraintTop_toTopOf="@+id/scroll_view"
-            app:layout_constraintStart_toStartOf="@+id/scroll_view"
-            app:layout_constraintEnd_toEndOf="@+id/scroll_view"
-            />
-
-    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
