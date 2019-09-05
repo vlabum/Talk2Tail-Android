@@ -85,15 +85,16 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
 
         horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
                 .range(startDate, endDate)
-                .datesNumberOnScreen(5)
+                .datesNumberOnScreen(7)
                 .configure()
                 .formatTopText("MMM")
                 .formatMiddleText("dd")
                 .formatBottomText("EEE")
-                .textSize(14f, 24f, 14f)
-                .showTopText(true)
+                .textSize(14f, 16f, 14f)
+                .showTopText(false)
                 .showBottomText(true)
-                .textColor(Color.LTGRAY, Color.WHITE)
+                .selectorColor(getResources().getColor(R.color.calendarAccent))
+                .textColor(getResources().getColor(R.color.calendarAccent), getResources().getColor(R.color.calendarAccent))
                 .end()
                 .build();
 
