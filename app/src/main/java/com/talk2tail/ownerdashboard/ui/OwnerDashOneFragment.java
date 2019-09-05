@@ -1,6 +1,5 @@
 package com.talk2tail.ownerdashboard.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -21,6 +20,11 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.talk2tail.App;
 import com.talk2tail.R;
+import com.talk2tail.common.model.event.CareEvent;
+import com.talk2tail.common.model.event.DogEvent;
+import com.talk2tail.common.model.event.HealthEvent;
+import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.event.TreatmentEvent;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.common.ui.recyclerevents.EventRecyclerAdapter;
 import com.talk2tail.common.ui.recyclerevents.MarginItemDecoration;
@@ -31,13 +35,17 @@ import com.talk2tail.ownerdashboard.view.OwnerDashboardView;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
+import devs.mulham.horizontalcalendar.model.CalendarEvent;
+import devs.mulham.horizontalcalendar.utils.CalendarEventsPredicate;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -88,20 +96,22 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
 
         monthTextView.setText(new SimpleDateFormat("LLLL").format(Calendar.getInstance().getTime()));
 
-
         horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
                 .range(startDate, endDate)
                 .datesNumberOnScreen(7)
                 .configure()
-                .formatTopText("MMM")
-                .formatMiddleText("dd")
-                .formatBottomText("EEE")
                 .textSize(14f, 16f, 14f)
                 .showTopText(false)
-                .showBottomText(true)
                 .selectorColor(getResources().getColor(R.color.calendarAccent))
                 .textColor(getResources().getColor(R.color.calendarAccent), getResources().getColor(R.color.calendarAccent))
                 .end()
+                .addEvents(new CalendarEventsPredicate() {
+                    @Override
+                    public List<CalendarEvent> events(Calendar date) {
+                        return makeCalendarEventList(date);
+                    }
+                })
+
                 .build();
 
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
@@ -147,5 +157,38 @@ public class OwnerDashOneFragment extends MvpAppCompatFragment implements OwnerD
         v.setWeight(dogs.get(0).getWeight() + " кг");
         v.setPhoto(dogs.get(0).getPhotoUrl());
         dogGridLayout.addView(v);
+    }
+
+    private List<CalendarEvent> makeCalendarEventList(Calendar date) {
+
+        List<CalendarEvent> calendarEventList = new ArrayList<>();
+        List<TalkToTailEvent> eventList = presenter.getEvents();
+
+        CalendarEvent calendarEventCare = new CalendarEvent(getResources().getColor(R.color.eventCardCare));
+        CalendarEvent calendarEventDog = new CalendarEvent(getResources().getColor(R.color.eventCardDog));
+        CalendarEvent calendarEventTreatment =  new CalendarEvent(getResources().getColor(R.color.eventCardTreatment));
+        CalendarEvent calendarEventHealth =  new CalendarEvent(getResources().getColor(R.color.eventCardHealth));
+
+        for (TalkToTailEvent e: eventList) {
+            Date tempDate = e.getEventDate();
+
+            if (date.getTime().getDay() == tempDate.getDay()){
+
+                if (e instanceof CareEvent){
+                    calendarEventList.add(calendarEventCare);
+                }
+                if (e instanceof DogEvent){
+                    calendarEventList.add(calendarEventDog);
+                }
+                if (e instanceof TreatmentEvent){
+                    calendarEventList.add(calendarEventTreatment);
+                }
+                if (e instanceof HealthEvent){
+                    calendarEventList.add(calendarEventHealth);
+                }
+
+            }
+        }
+        return calendarEventList;
     }
 }
