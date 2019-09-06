@@ -40,7 +40,7 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().init();
-        dogs.addAll(dashboardRepo.getGoodDoggies(4));
+        dogs.addAll(dashboardRepo.getGoodDoggies(5));
         getViewState().initMenu(dogs.size());
         getViewState().addDogs(dogs);
     }
@@ -87,5 +87,28 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
             }
         }
         getViewState().addDogs(searchedDogs);
+    }
+
+    public void applyFilters(boolean maleChecked, boolean femaleChecked, boolean veteranChecked) {
+        final List<DogItemDTO> filteredDogs = new ArrayList<>();
+        getViewState().clearDogs();
+        getViewState().showAllDogs(true);
+        if (!maleChecked && !femaleChecked && !veteranChecked ) {
+            filteredDogs.addAll(dogs);
+        }
+        else {
+            for (DogItemDTO dogItemDTO : dogs) {
+                if (maleChecked && dogItemDTO.getGender().equals("M")) {
+                    filteredDogs.add(dogItemDTO);
+                }
+                else if (femaleChecked && dogItemDTO.getGender().equals("F")) {
+                    filteredDogs.add(dogItemDTO);
+                }
+                else if (veteranChecked && dogItemDTO.getDogAge() > 8) {
+                    filteredDogs.add(dogItemDTO);
+                }
+            }
+        }
+        getViewState().addDogs(filteredDogs);
     }
 }

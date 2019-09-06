@@ -7,6 +7,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
@@ -58,6 +59,8 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     LinearLayout menuLayout;
     @BindView(R.id.dog_search_layout)
     LinearLayout searchLayout;
+    @BindView(R.id.dog_filter_layout)
+    LinearLayout filterLayout;
     @BindView(R.id.dog_search_view)
     SearchView searchView;
 
@@ -67,6 +70,13 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     MaterialButton filterButton;
     @BindView(R.id.dog_show_all_btn)
     MaterialButton showButton;
+
+    @BindView(R.id.check_dogs_male)
+    CheckBox maleCheckbox;
+    @BindView(R.id.check_dogs_female)
+    CheckBox femaleCheckbox;
+    @BindView(R.id.check_dogs_veteran)
+    CheckBox veteranCheckbox;
 
     public OwnerDashboardFragment() {
         // Required empty public constructor
@@ -144,13 +154,16 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
 
     @Override
     public void showFilter(boolean isShow) {
-
+        filterButton.setTextColor(getResources().getColor( isShow ? R.color.menuItemEnabledTextColor : R.color.menuItemDisabledTextColor));
+        ObjectAnimator.ofFloat(filterLayout, "translationY", isShow ? filterLayout.getHeight() : -filterLayout.getHeight()).start();
+        filterEnabled = isShow;
     }
 
     @Override
     public void init() {
         initGrid();
         initSearchView();
+        initCheckBoxes();
     }
 
     @Override
@@ -205,6 +218,12 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
                 return false;
             }
         });
+    }
+
+    private void initCheckBoxes() {
+        maleCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> presenter.applyFilters(maleCheckbox.isChecked(), femaleCheckbox.isChecked(), veteranCheckbox.isChecked()));
+        femaleCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> presenter.applyFilters(maleCheckbox.isChecked(), femaleCheckbox.isChecked(), veteranCheckbox.isChecked()));
+        veteranCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> presenter.applyFilters(maleCheckbox.isChecked(), femaleCheckbox.isChecked(), veteranCheckbox.isChecked()));
     }
 
     private void fillEmptyCells(int emptyCellsCount) {

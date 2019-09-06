@@ -57,8 +57,8 @@ public class OwnerDashboardRepo implements IOwnerDashboardRepo {
         dogs.add(dog4);
 
         final DogItemDTO dog5 = new DogItemDTO();
-        dog5.setDogName("Роман Васильевич");
-        dog5.setDogAge(1.1);
+        dog5.setDogName("Тузик с грелкой");
+        dog5.setDogAge(10.1);
         dog5.setWeight(7.9);
         dog5.setGender("M");
         dog5.setPhotoUrl(Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/" +R.drawable.simpledog).toString());

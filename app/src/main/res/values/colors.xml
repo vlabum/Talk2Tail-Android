@@ -43,5 +43,6 @@
     <color name="menuItemEnabledTextColor">#FFFFFF</color>
 
     <color name="textHintColor">#61000000</color>
+    <color name="lineDividerColor">#7FFFFFFF</color>
 
 </resources>

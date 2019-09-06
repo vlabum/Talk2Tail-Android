@@ -56,6 +56,72 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/dog_filter_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/dog_menu_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/actionBarColor"
+        android:backgroundTint="@color/actionBarColor"
+        >
+
+        <CheckBox
+            android:id="@+id/check_dogs_male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Кобели"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:buttonTint="@android:color/white"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/lineDividerColor"
+            />
+
+        <CheckBox
+            android:id="@+id/check_dogs_female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Суки"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:buttonTint="@android:color/white"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/lineDividerColor"
+            />
+
+        <CheckBox
+            android:id="@+id/check_dogs_veteran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ветераны"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:buttonTint="@android:color/white"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/dog_menu_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
