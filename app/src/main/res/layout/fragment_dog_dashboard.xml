@@ -10,6 +10,7 @@
         android:id="@+id/dog_dash_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/calendarBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,16 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <com.jjoe64.graphview.GraphView
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:id="@+id/graph"
+                android:background="@color/calendarBackground"
+                app:layout_constraintTop_toBottomOf="@+id/events_dog_dash_rv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
             <devs.mulham.horizontalcalendar.HorizontalCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
@@ -54,7 +65,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/events_dog_dash_rv"
+                app:layout_constraintTop_toBottomOf="@+id/graph"
                 app:textColorSelected="#999" />
 
             <TextView
