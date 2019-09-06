@@ -34,6 +34,9 @@
     <string name="fab_menu_add_task">Задачу</string>
     <string name="month">Месяц</string>
     <string name="calendar">Календарь</string>
+    <string name="about_dog">О собаке</string>
+    <string name="veterinary_passport">Ветпаспорт</string>
+    <string name="assignment">Назначения</string>
 
 
 </resources>
