@@ -1,10 +1,9 @@
-package com.talk2tail.common.model.api;
+package com.talk2tail.common.model.entity.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.talk2tail.common.model.entity.IRegisterUser;
 
-public class RegisterUser implements IRegisterUser {
+public class RegisterUser {
 
     @Expose
     @SerializedName("email")

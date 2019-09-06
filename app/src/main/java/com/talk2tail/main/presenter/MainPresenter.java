@@ -2,11 +2,14 @@ package com.talk2tail.main.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.talk2tail.common.AppConstants;
 import com.talk2tail.main.view.MainView;
 import com.talk2tail.navigation.Screens;
 
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
 import ru.terrakok.cicerone.Router;
 import timber.log.Timber;
 
@@ -15,6 +18,10 @@ public class MainPresenter extends MvpPresenter<MainView> {
 
     @Inject
     protected Router router;
+
+    @Getter
+    @Setter
+    private int countPets;
 
     public MainPresenter() {
     }
@@ -31,7 +38,17 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     public void goToOwnerDashboard() {
-        router.navigateTo(new Screens.OwnerDashboardScreen());
+        switch (countPets) {
+            case AppConstants.OWNER_DASH_NO_DOG:
+                goToOwnerDashEmpty();
+                break;
+            case AppConstants.OWNER_DASH_ONE_DOG:
+                goToOwnerDashOne();
+                break;
+            default:
+                goToMultiDogScreen();
+
+        }
     }
 
     public void goToOwnerDashEmpty() {
@@ -50,10 +67,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
         router.navigateTo(new Screens.DogVaccinationScreen());
     }
 
-    public void goToSingleScreen() {
-    }
-
-    public void goToMultidogScreen() {
+    public void goToMultiDogScreen() {
         router.navigateTo(new Screens.OwnerDashboardScreen());
     }
 
