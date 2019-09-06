@@ -39,4 +39,5 @@ public interface AppComponent {
     void inject(DogItemView v);
 
     void inject(DogItemBigView v);
+
 }

@@ -45,4 +45,8 @@
     <color name="textHintColor">#61000000</color>
     <color name="lineDividerColor">#7FFFFFFF</color>
 
+    <!-- Calendar colors -->
+    <color name="calendarBackground">#FFFFFF</color>
+    <color name="calendarAccent">#28314C</color>
+
 </resources>

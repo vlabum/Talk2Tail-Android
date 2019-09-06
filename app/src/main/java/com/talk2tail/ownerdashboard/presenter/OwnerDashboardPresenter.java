@@ -39,6 +39,7 @@ public class OwnerDashboardPresenter extends MvpPresenter<OwnerDashboardView> {
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
+        generateTestEvents();
         getViewState().init();
         dogs.addAll(dashboardRepo.getGoodDoggies(5));
         getViewState().initMenu(dogs.size());

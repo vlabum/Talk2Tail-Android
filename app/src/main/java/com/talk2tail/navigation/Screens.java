@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 
+import com.talk2tail.common.AppConstants;
 import com.talk2tail.dogdashboard.ui.DogDashboardFragment;
 import com.talk2tail.dogvaccination.ui.DogVaccinationFragment;
 import com.talk2tail.login.ui.LoginFragment;
@@ -49,7 +50,21 @@ public class Screens {
     public static class MainActivityScreen extends SupportAppScreen {
         @Override
         public Intent getActivityIntent(Context context) {
-            return MainActivity.getMainIntent(context);
+            return MainActivity.getMainIntent(context, AppConstants.OWNER_DASH_A_LOT_OF_DOG);
+        }
+    }
+
+    public static class MainActivityScreenEmpty extends SupportAppScreen {
+        @Override
+        public Intent getActivityIntent(Context context) {
+            return MainActivity.getMainIntent(context, AppConstants.OWNER_DASH_NO_DOG);
+        }
+    }
+
+    public static class MainActivityScreenOne extends SupportAppScreen {
+        @Override
+        public Intent getActivityIntent(Context context) {
+            return MainActivity.getMainIntent(context, AppConstants.OWNER_DASH_ONE_DOG);
         }
     }
 

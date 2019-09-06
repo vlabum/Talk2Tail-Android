@@ -1,6 +1,7 @@
 package com.talk2tail.login.ui;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -75,4 +76,13 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
         unbinder.unbind();
     }
 
+    @Override
+    public void showToast(String response) {
+        return;
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
 }
