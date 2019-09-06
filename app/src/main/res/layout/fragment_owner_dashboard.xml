@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/AppTheme.StartDark"
+    android:theme="@style/AppTheme"
     tools:context=".dogdashboard.ui.DogDashboardFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -16,16 +16,69 @@
         app:layout_constraintEnd_toEndOf="parent"
         >
 
-        <GridLayout
-            android:id="@+id/dog_grid_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relative_dog_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"
             app:layout_constraintTop_toTopOf="@+id/scroll_view"
             app:layout_constraintStart_toStartOf="@+id/scroll_view"
             app:layout_constraintEnd_toEndOf="@+id/scroll_view"
-            />
+            android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"
+            >
+
+            <GridLayout
+                android:id="@+id/dog_grid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/events_owner_multi_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/dog_grid_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <devs.mulham.horizontalcalendar.HorizontalCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"
+                android:background="@color/calendarBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/events_owner_multi_rv"
+                app:textColorSelected="#999" />
+
+            <TextView
+                android:id="@+id/calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calendar"
+                android:textSize="16dp"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintBottom_toTopOf="@+id/calendarView"
+                app:layout_constraintStart_toStartOf="@+id/events_owner_one_rv" />
+
+            <TextView
+                android:id="@+id/cal_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/month"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintBottom_toTopOf="@+id/calendarView"
+                app:layout_constraintEnd_toEndOf="@+id/events_owner_one_rv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 

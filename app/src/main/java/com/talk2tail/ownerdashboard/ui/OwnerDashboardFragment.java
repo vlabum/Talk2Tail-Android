@@ -3,6 +3,7 @@ package com.talk2tail.ownerdashboard.ui;
 import android.animation.ObjectAnimator;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,13 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -20,19 +25,34 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.google.android.material.button.MaterialButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
+import com.talk2tail.common.model.event.CareEvent;
+import com.talk2tail.common.model.event.DogEvent;
+import com.talk2tail.common.model.event.HealthEvent;
+import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.event.TreatmentEvent;
 import com.talk2tail.common.ui.BackButtonListener;
+import com.talk2tail.common.ui.recyclerevents.EventRecyclerAdapter;
+import com.talk2tail.common.ui.recyclerevents.MarginItemDecoration;
 import com.talk2tail.ownerdashboard.presenter.OwnerDashboardPresenter;
 import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
 import com.talk2tail.ownerdashboard.view.OwnerDashboardView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import devs.mulham.horizontalcalendar.HorizontalCalendar;
+import devs.mulham.horizontalcalendar.model.CalendarEvent;
+import devs.mulham.horizontalcalendar.utils.CalendarEventsPredicate;
+import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
@@ -77,6 +97,14 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     CheckBox femaleCheckbox;
     @BindView(R.id.check_dogs_veteran)
     CheckBox veteranCheckbox;
+
+    @BindView(R.id.events_owner_multi_rv)
+    RecyclerView recyclerView;
+
+    @BindView(R.id.cal_month)
+    TextView monthTextView;
+
+    private HorizontalCalendar horizontalCalendar;
 
     public OwnerDashboardFragment() {
         // Required empty public constructor
@@ -164,6 +192,8 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         initGrid();
         initSearchView();
         initCheckBoxes();
+        initRv();
+        initCalendar();
     }
 
     @Override
@@ -239,6 +269,80 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
             vi.setVisibility(View.INVISIBLE);
             dogGridLayout.addView(vi);
         }
+    }
+
+    private void initRv() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.addItemDecoration(new MarginItemDecoration((int) (getResources().getDimension(R.dimen.rvEventsLeftMargin))));
+        final EventRecyclerAdapter adapter = new EventRecyclerAdapter(presenter.getEvents());
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void initCalendar() {
+        /* start before 1 month from now */
+        Calendar startDate = Calendar.getInstance();
+        startDate.add(Calendar.MONTH, -1);
+
+        /* end after 1 month from now */
+        Calendar endDate = Calendar.getInstance();
+        endDate.add(Calendar.MONTH, 1);
+
+        horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
+                .range(startDate, endDate)
+                .datesNumberOnScreen(7)
+                .configure()
+                .textSize(14f, 16f, 14f)
+                .showTopText(false)
+                .selectorColor(getResources().getColor(R.color.calendarAccent))
+                .textColor(getResources().getColor(R.color.calendarAccent), getResources().getColor(R.color.calendarAccent))
+                .end()
+                .addEvents(new CalendarEventsPredicate() {
+                    @Override
+                    public List<CalendarEvent> events(Calendar date) {
+                        return makeCalendarEventList(date);
+                    }
+                })
+
+                .build();
+
+        horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
+            @Override
+            public void onDateSelected(Calendar date, int position) {
+                monthTextView.setText(new SimpleDateFormat("LLLL").format(date.getTime()));
+                Toast.makeText(getContext(), DateFormat.format("EEE, MMM d, yyyy", date) + " is selected!", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+    }
+
+    private List<CalendarEvent> makeCalendarEventList(Calendar date) {
+
+        List<CalendarEvent> calendarEventList = new ArrayList<>();
+        List<TalkToTailEvent> eventList = presenter.getEvents();
+
+        CalendarEvent calendarEventCare = new CalendarEvent(getResources().getColor(R.color.eventCardCare));
+        CalendarEvent calendarEventDog = new CalendarEvent(getResources().getColor(R.color.eventCardDog));
+        CalendarEvent calendarEventTreatment =  new CalendarEvent(getResources().getColor(R.color.eventCardTreatment));
+        CalendarEvent calendarEventHealth =  new CalendarEvent(getResources().getColor(R.color.eventCardHealth));
+
+        for (TalkToTailEvent e: eventList) {
+            Date tempDate = e.getEventDate();
+            if (date.getTime().getDay() == tempDate.getDay()){
+                if (e instanceof CareEvent){
+                    calendarEventList.add(calendarEventCare);
+                }
+                if (e instanceof DogEvent){
+                    calendarEventList.add(calendarEventDog);
+                }
+                if (e instanceof TreatmentEvent){
+                    calendarEventList.add(calendarEventTreatment);
+                }
+                if (e instanceof HealthEvent){
+                    calendarEventList.add(calendarEventHealth);
+                }
+            }
+        }
+        return calendarEventList;
     }
 
 }
