@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 
 import java.util.List;
 

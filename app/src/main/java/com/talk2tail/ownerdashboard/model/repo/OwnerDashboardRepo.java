@@ -5,7 +5,7 @@ import android.net.Uri;
 import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.AppConstants;
-import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
 
 import java.util.ArrayList;

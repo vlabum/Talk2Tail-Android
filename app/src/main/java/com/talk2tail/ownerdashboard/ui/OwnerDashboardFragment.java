@@ -25,8 +25,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.google.android.material.button.MaterialButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
-import com.talk2tail.common.AppConstants;
-import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.common.ui.recyclerevents.EventRecyclerAdapter;
 import com.talk2tail.common.ui.recyclerevents.MarginItemDecoration;
@@ -316,29 +315,13 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         List<CalendarEvent> calendarEventList = new ArrayList<>();
         List<TalkToTailEvent> eventList = presenter.getEvents();
 
-        CalendarEvent calendarEventCare = new CalendarEvent(getResources().getColor(R.color.eventCardCare));
-        CalendarEvent calendarEventDog = new CalendarEvent(getResources().getColor(R.color.eventCardDog));
-        CalendarEvent calendarEventTreatment =  new CalendarEvent(getResources().getColor(R.color.eventCardTreatment));
-        CalendarEvent calendarEventHealth =  new CalendarEvent(getResources().getColor(R.color.eventCardHealth));
-
         for (TalkToTailEvent e : eventList) {
             Calendar tempDate = e.getEventDate();
 
             if (tempDate.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)
                     && tempDate.get(Calendar.YEAR) == date.get(Calendar.YEAR)) {
 
-                if (e.getTypeEvent() == AppConstants.CARE_EVENT) {
-                    calendarEventList.add(calendarEventCare);
-                }
-                if (e.getTypeEvent() == AppConstants.DOG_EVENT) {
-                    calendarEventList.add(calendarEventDog);
-                }
-                if (e.getTypeEvent() == AppConstants.TREATMENT_EVENT) {
-                    calendarEventList.add(calendarEventTreatment);
-                }
-                if (e.getTypeEvent() == AppConstants.HEALTH_EVENT) {
-                    calendarEventList.add(calendarEventHealth);
-                }
+                calendarEventList.add(e);
 
             }
         }
@@ -346,3 +329,4 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
     }
 
 }
+

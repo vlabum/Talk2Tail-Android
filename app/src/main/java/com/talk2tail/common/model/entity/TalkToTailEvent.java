@@ -1,10 +1,11 @@
-package com.talk2tail.common.model.event;
+package com.talk2tail.common.model.entity;
 
 import com.talk2tail.common.AppConstants;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import devs.mulham.horizontalcalendar.model.CalendarEvent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ import lombok.Setter;
  * Данный класс описывает все возможные типы событий,
  * которые необходимы питомцу
  */
-public class TalkToTailEvent {
+public class TalkToTailEvent extends CalendarEvent {
 
     @Getter
     @Setter
@@ -35,11 +36,13 @@ public class TalkToTailEvent {
     @Getter
     protected String dateStr;
 
+    //protected int color;
+
     public TalkToTailEvent(String caption, String description, Calendar date, int typeEvent, int color) {
-//        super(color);
+        super(color);
         this.eventCaption = caption;
         this.eventDescription = description;
-//        this.description = description;
+        this.description = description;
         switch (typeEvent) {
             case AppConstants.CARE_EVENT:
             case AppConstants.DOG_EVENT:
@@ -53,7 +56,7 @@ public class TalkToTailEvent {
         setEventDate(date);
     }
 
-    void setEventDate(Calendar eventDate) {
+    private void setEventDate(Calendar eventDate) {
         this.eventDate = eventDate;
         setDateTimeStrings();
     }
@@ -66,4 +69,23 @@ public class TalkToTailEvent {
         dateStr = sdfDate.format(eventDate.getTime());
     }
 
+    @Override
+    public int getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    @Override
+    public String getDescription() {
+        return eventDescription;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.eventDescription = description;
+    }
 }

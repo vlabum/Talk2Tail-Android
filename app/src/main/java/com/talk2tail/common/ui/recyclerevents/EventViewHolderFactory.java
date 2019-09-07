@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 
 import com.talk2tail.R;
 import com.talk2tail.common.AppConstants;
-import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 
 public class EventViewHolderFactory {
 
@@ -19,11 +19,11 @@ public class EventViewHolderFactory {
     public ViewHolder create(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.care_event_item, parent, false);
-        ViewHolderCareEvent holder = new ViewHolderCareEvent(view);
+        View view = inflater.inflate(R.layout.event_item, parent, false);
+        ViewHolder holder = new ViewHolder(view);
 
-        ImageView icon = view.findViewById(R.id.care_event_iv);
-        CardView mainCard = view.findViewById(R.id.care_event_cv);
+        ImageView icon = view.findViewById(R.id.card_event_iv);
+        CardView mainCard = view.findViewById(R.id.card_event_cv);
 
         switch (viewType) {
             case AppConstants.CARE_EVENT:
@@ -49,27 +49,6 @@ public class EventViewHolderFactory {
         }
 
         return holder;
-
-//        switch (viewType) {
-//            case CARE_EVENT:
-//                return new ViewHolderCareEvent(LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.care_event_item, parent, false));
-//
-//            case DOG_EVENT:
-//                return new ViewHolderDogEvent(LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.dog_event_item, parent, false));
-//
-//            case HEALTH_EVENT:
-//                return new ViewHolderHealthEvent(LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.health_event_item, parent, false));
-//
-//            case TREATMENT_EVENT:
-//                return new ViewHolderTreatmentEvent(LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.treatment_event_item, parent, false));
-//
-//            default:
-//                return null;
-//        }
 
     }
 
