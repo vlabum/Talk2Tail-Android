@@ -25,11 +25,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.google.android.material.button.MaterialButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
-import com.talk2tail.common.model.event.CareEvent;
-import com.talk2tail.common.model.event.DogEvent;
-import com.talk2tail.common.model.event.HealthEvent;
+import com.talk2tail.common.AppConstants;
 import com.talk2tail.common.model.event.TalkToTailEvent;
-import com.talk2tail.common.model.event.TreatmentEvent;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.common.ui.recyclerevents.EventRecyclerAdapter;
 import com.talk2tail.common.ui.recyclerevents.MarginItemDecoration;
@@ -42,7 +39,6 @@ import org.jetbrains.annotations.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -325,21 +321,25 @@ public class OwnerDashboardFragment extends MvpAppCompatFragment implements Owne
         CalendarEvent calendarEventTreatment =  new CalendarEvent(getResources().getColor(R.color.eventCardTreatment));
         CalendarEvent calendarEventHealth =  new CalendarEvent(getResources().getColor(R.color.eventCardHealth));
 
-        for (TalkToTailEvent e: eventList) {
-            Date tempDate = e.getEventDate();
-            if (date.getTime().getDay() == tempDate.getDay()){
-                if (e instanceof CareEvent){
+        for (TalkToTailEvent e : eventList) {
+            Calendar tempDate = e.getEventDate();
+
+            if (tempDate.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)
+                    && tempDate.get(Calendar.YEAR) == date.get(Calendar.YEAR)) {
+
+                if (e.getTypeEvent() == AppConstants.CARE_EVENT) {
                     calendarEventList.add(calendarEventCare);
                 }
-                if (e instanceof DogEvent){
+                if (e.getTypeEvent() == AppConstants.DOG_EVENT) {
                     calendarEventList.add(calendarEventDog);
                 }
-                if (e instanceof TreatmentEvent){
+                if (e.getTypeEvent() == AppConstants.TREATMENT_EVENT) {
                     calendarEventList.add(calendarEventTreatment);
                 }
-                if (e instanceof HealthEvent){
+                if (e.getTypeEvent() == AppConstants.HEALTH_EVENT) {
                     calendarEventList.add(calendarEventHealth);
                 }
+
             }
         }
         return calendarEventList;
