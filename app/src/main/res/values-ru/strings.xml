@@ -37,6 +37,8 @@
     <string name="about_dog">О собаке</string>
     <string name="veterinary_passport">Ветпаспорт</string>
     <string name="assignment">Назначения</string>
+    <string name="weight">Вес</string>
+    <string name="weigh">Взвесить</string>
 
 
 </resources>

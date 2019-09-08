@@ -15,4 +15,6 @@ public class DogItemDTO {
 
     private String photoUrl;
 
+    private DogWeighData dogWeighData = new DogWeighData();
+
 }
