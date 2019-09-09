@@ -191,7 +191,7 @@ public class DogDashboardFragment extends MvpAppCompatFragment implements DogDas
 
     private void setWeightFields(DogWeighData data) {
         if (data.getLastWeight() > 0) {
-            lastWeight.setText("" + data.getLastWeight());
+            lastWeight.setText(data.getLastWeight() + " " +  getResources().getString(R.string.killogramm));
             lastWeigh.setText(getResources().getString(R.string.last_wegh) +
                     " " + data.getDaysAgo() + " " +
                     getResources().getString(R.string.days_ago));

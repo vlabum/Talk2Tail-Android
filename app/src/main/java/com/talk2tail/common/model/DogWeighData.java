@@ -10,7 +10,7 @@ import lombok.Getter;
 
 public class DogWeighData {
 
-    private final int MILISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
+    private final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
     private final double aspectX = 0.5;
 
     @Getter
@@ -18,7 +18,7 @@ public class DogWeighData {
     private long firstDay;
 
     public void addWeightPoint(Date date, float weight){
-        if (weightPoints.isEmpty()) firstDay = date.getTime()/MILISECONDS_IN_A_DAY;
+        if (weightPoints.isEmpty()) firstDay = date.getTime()/MILLISECONDS_IN_A_DAY;
         weightPoints.add(new WeightPoint(date, weight));
 
     }
@@ -27,7 +27,7 @@ public class DogWeighData {
         DataPoint[] dataPoints = new DataPoint[weightPoints.size()];
 
         for (int i = 0; i < weightPoints.size(); i++) {
-            dataPoints[i] = new DataPoint((weightPoints.get(i).date.getTime()/MILISECONDS_IN_A_DAY - firstDay)*aspectX, weightPoints.get(i).weight);
+            dataPoints[i] = new DataPoint((weightPoints.get(i).date.getTime()/MILLISECONDS_IN_A_DAY - firstDay)*aspectX, weightPoints.get(i).weight);
         }
 
 
@@ -62,7 +62,7 @@ public class DogWeighData {
     public long getDaysAgo(){
         Date lastDay = weightPoints.get(weightPoints.size() - 1).date;
         Date today = new Date();
-        return (today.getTime() - lastDay.getTime())/MILISECONDS_IN_A_DAY;
+        return (today.getTime() - lastDay.getTime())/MILLISECONDS_IN_A_DAY;
     }
 
     private class WeightPoint {
