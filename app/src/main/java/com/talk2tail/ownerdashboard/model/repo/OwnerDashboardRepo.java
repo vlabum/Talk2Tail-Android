@@ -2,16 +2,14 @@ package com.talk2tail.ownerdashboard.model.repo;
 
 import android.net.Uri;
 
+import com.talk2tail.App;
 import com.talk2tail.R;
-import com.talk2tail.common.model.event.CareEvent;
-import com.talk2tail.common.model.event.DogEvent;
-import com.talk2tail.common.model.event.HealthEvent;
-import com.talk2tail.common.model.event.TalkToTailEvent;
-import com.talk2tail.common.model.event.TreatmentEvent;
+import com.talk2tail.common.AppConstants;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class OwnerDashboardRepo implements IOwnerDashboardRepo {
@@ -29,7 +27,7 @@ public class OwnerDashboardRepo implements IOwnerDashboardRepo {
         dog1.setDogAge(2.5);
         dog1.setWeight(10.3);
         dog1.setGender("M");
-        dog1.setPhotoUrl(Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/" +R.drawable.simpledog).toString());
+        dog1.setPhotoUrl(Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + R.drawable.simpledog).toString());
         dogs.add(dog1);
 
         final DogItemDTO dog2 = new DogItemDTO();
@@ -37,7 +35,7 @@ public class OwnerDashboardRepo implements IOwnerDashboardRepo {
         dog2.setDogAge(2.9);
         dog2.setWeight(15.5);
         dog2.setGender("M");
-        dog2.setPhotoUrl(Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/" +R.drawable.simpledog).toString());
+        dog2.setPhotoUrl(Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + R.drawable.simpledog).toString());
         dogs.add(dog2);
 
         final DogItemDTO dog3 = new DogItemDTO();
@@ -45,7 +43,7 @@ public class OwnerDashboardRepo implements IOwnerDashboardRepo {
         dog3.setDogAge(7.3);
         dog3.setWeight(21.4);
         dog3.setGender("M");
-        dog3.setPhotoUrl(Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/" +R.drawable.simpledog).toString());
+        dog3.setPhotoUrl(Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + R.drawable.simpledog).toString());
         dogs.add(dog3);
 
         final DogItemDTO dog4 = new DogItemDTO();
@@ -53,7 +51,7 @@ public class OwnerDashboardRepo implements IOwnerDashboardRepo {
         dog4.setDogAge(5.3);
         dog4.setWeight(12.4);
         dog4.setGender("F");
-        dog4.setPhotoUrl(Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/" +R.drawable.simpledog).toString());
+        dog4.setPhotoUrl(Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + R.drawable.simpledog).toString());
         dogs.add(dog4);
 
         final DogItemDTO dog5 = new DogItemDTO();
@@ -61,7 +59,7 @@ public class OwnerDashboardRepo implements IOwnerDashboardRepo {
         dog5.setDogAge(10.1);
         dog5.setWeight(7.9);
         dog5.setGender("M");
-        dog5.setPhotoUrl(Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/" +R.drawable.simpledog).toString());
+        dog5.setPhotoUrl(Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + R.drawable.simpledog).toString());
         dogs.add(dog5);
 
         return dogs;
@@ -69,11 +67,39 @@ public class OwnerDashboardRepo implements IOwnerDashboardRepo {
 
     public List<TalkToTailEvent> getTestEvents() {
         List<TalkToTailEvent> events = new ArrayList<>();
-        events.add(new CareEvent("Кукусик", "Покормить Кукусика. Посмотреть, будет ли кукситься.", new Date()));
-        events.add(new DogEvent("Кудабля", "Найти Кудаблю.", new Date()));
-        events.add(new TreatmentEvent("Шарик", "Выкатить шарика из под дивана.", new Date()));
-        events.add(new HealthEvent("Травка", "Подстричь травку.", new Date(119, 8, 4)));
-        events.add(new DogEvent("Кудабля", "Проверить, на месте ли Кудабля.", new Date(119, 8, 4)));
+
+        events.add(new TalkToTailEvent("Кукусик",
+                "Покормить Кукусика. Посмотреть, будет ли кукситься.",
+                Calendar.getInstance(),
+                AppConstants.CARE_EVENT,
+                App.getInstance().getResources().getColor(R.color.eventCardCare)));
+
+        events.add(new TalkToTailEvent("Кудабля",
+                "Найти Кудаблю.",
+                Calendar.getInstance(),
+                AppConstants.DOG_EVENT,
+                App.getInstance().getResources().getColor(R.color.eventCardDog)));
+
+        events.add(new TalkToTailEvent("Шарик",
+                "Выкатить шарика из под дивана.",
+                Calendar.getInstance(),
+                AppConstants.TREATMENT_EVENT,
+                App.getInstance().getResources().getColor(R.color.eventCardTreatment)));
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(2019, 8, 10);
+
+        events.add(new TalkToTailEvent("Травка",
+                "Подстричь травку.",
+                cal,
+                AppConstants.HEALTH_EVENT,
+                App.getInstance().getResources().getColor(R.color.eventCardHealth)));
+
+        events.add(new TalkToTailEvent("Кудабля",
+                "Проверить, на месте ли Кудабля.",
+                cal,
+                AppConstants.DOG_EVENT,
+                App.getInstance().getResources().getColor(R.color.eventCardDog)));
         return events;
     }
 

@@ -1,65 +1,59 @@
 package com.talk2tail.common.ui.recyclerevents;
 
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
 import com.talk2tail.R;
-import com.talk2tail.common.model.event.CareEvent;
-import com.talk2tail.common.model.event.DogEvent;
-import com.talk2tail.common.model.event.HealthEvent;
-import com.talk2tail.common.model.event.TalkToTailEvent;
-import com.talk2tail.common.model.event.TreatmentEvent;
+import com.talk2tail.common.AppConstants;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 
 public class EventViewHolderFactory {
 
-    private static final int UNKNOWN_EVENT = 0;
-    private static final int CARE_EVENT = 1;
-    private static final int DOG_EVENT = 2;
-    private static final int HEATH_EVENT = 3;
-    private static final int TREATMENT_EVENT = 4;
 
     public ViewHolder create(@NonNull ViewGroup parent, int viewType) {
 
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.event_item, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+
+        ImageView icon = view.findViewById(R.id.card_event_iv);
+        CardView mainCard = view.findViewById(R.id.card_event_cv);
+
         switch (viewType) {
-            case CARE_EVENT:
-                return new ViewHolderCareEvent(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.care_event_item, parent, false));
+            case AppConstants.CARE_EVENT:
+                icon.setImageResource(R.drawable.ic_t2t_care_event);
+                mainCard.setBackgroundTintList(ColorStateList.valueOf(view.getResources().getColor(R.color.eventCardCare)));
+                break;
 
-            case DOG_EVENT:
-                return new ViewHolderDogEvent(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.dog_event_item, parent, false));
+            case AppConstants.DOG_EVENT:
+                icon.setImageResource(R.drawable.ic_t2t_dog_event);
+                mainCard.setBackgroundTintList(ColorStateList.valueOf(view.getResources().getColor(R.color.eventCardDog)));
+                break;
 
-            case HEATH_EVENT:
-                return new ViewHolderHealthEvent(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.health_event_item, parent, false));
+            case AppConstants.HEALTH_EVENT:
+                icon.setImageResource(R.drawable.ic_t2t_health_event);
+                mainCard.setBackgroundTintList(ColorStateList.valueOf(view.getResources().getColor(R.color.eventCardHealth)));
+                break;
 
-            case TREATMENT_EVENT:
-                return new ViewHolderTreatmentEvent(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.treatment_event_item, parent, false));
+            case AppConstants.TREATMENT_EVENT:
+                icon.setImageResource(R.drawable.ic_t2t_treatment_event);
+                mainCard.setBackgroundTintList(ColorStateList.valueOf(view.getResources().getColor(R.color.eventCardTreatment)));
+                break;
 
-            default:
-                return null;
         }
+
+        return holder;
 
     }
 
     int getViewType(TalkToTailEvent event) {
-
-        if (event instanceof CareEvent)
-            return CARE_EVENT;
-
-        if (event instanceof DogEvent)
-            return DOG_EVENT;
-
-        if (event instanceof HealthEvent)
-            return HEATH_EVENT;
-
-        if (event instanceof TreatmentEvent)
-            return TREATMENT_EVENT;
-
-        return UNKNOWN_EVENT;
+        return event.getTypeEvent();
     }
 
 }
