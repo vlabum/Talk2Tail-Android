@@ -6,28 +6,26 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.talk2tail.App;
 import com.talk2tail.R;
 import com.talk2tail.common.ui.BackButtonListener;
-import com.talk2tail.login.presenter.LoginPresenter;
 import com.talk2tail.login.view.LoginView;
+import com.talk2tail.navigation.Screens;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
+import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
 
-public class LoginActivity extends MvpAppCompatActivity implements LoginView {
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @BindView(R.id.loading_rl)
     protected RelativeLayout loadingView;
@@ -35,8 +33,8 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
     @Inject
     protected NavigatorHolder navigatorHolder;
 
-    @InjectPresenter
-    LoginPresenter presenter;
+    @Inject
+    protected Router router;
 
     private Navigator navigator = new SupportAppNavigator(this, R.id.login_container);
 
@@ -44,21 +42,13 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
 
     private AccountManager accountManager;
 
-
-    @ProvidePresenter
-    protected LoginPresenter createPresenter() {
-        final LoginPresenter loginPresenter = new LoginPresenter(AndroidSchedulers.mainThread());
-        App.getInstance().getAppComponent().inject(loginPresenter);
-        return loginPresenter;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.getInstance().getAppComponent().inject(this);
         setContentView(R.layout.activity_login);
         unbinder = ButterKnife.bind(this);
-        presenter.goToLoginFragment();
+        router.navigateTo(new Screens.LoginFragmentScreen());
 
     }
 
