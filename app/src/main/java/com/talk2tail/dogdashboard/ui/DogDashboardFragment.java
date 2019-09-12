@@ -1,11 +1,6 @@
 package com.talk2tail.dogdashboard.ui;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +8,13 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -21,25 +23,23 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.talk2tail.App;
 import com.talk2tail.R;
-import com.talk2tail.common.model.event.CareEvent;
-import com.talk2tail.common.model.event.DogEvent;
-import com.talk2tail.common.model.event.HealthEvent;
-import com.talk2tail.common.model.event.TalkToTailEvent;
-import com.talk2tail.common.model.event.TreatmentEvent;
+import com.talk2tail.common.model.DogWeighData;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.common.ui.recyclerevents.EventRecyclerAdapter;
 import com.talk2tail.common.ui.recyclerevents.MarginItemDecoration;
 import com.talk2tail.dogdashboard.presenter.DogDashboardPresenter;
 import com.talk2tail.dogdashboard.view.DogDashboardView;
 import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
-import com.talk2tail.common.model.DogWeighData;
 import com.talk2tail.ownerdashboard.ui.DogItemBigView;
+
 import org.jetbrains.annotations.NotNull;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -207,31 +207,17 @@ public class DogDashboardFragment extends MvpAppCompatFragment implements DogDas
         List<CalendarEvent> calendarEventList = new ArrayList<>();
         List<TalkToTailEvent> eventList = presenter.getEvents();
 
-        CalendarEvent calendarEventCare = new CalendarEvent(getResources().getColor(R.color.eventCardCare));
-        CalendarEvent calendarEventDog = new CalendarEvent(getResources().getColor(R.color.eventCardDog));
-        CalendarEvent calendarEventTreatment =  new CalendarEvent(getResources().getColor(R.color.eventCardTreatment));
-        CalendarEvent calendarEventHealth =  new CalendarEvent(getResources().getColor(R.color.eventCardHealth));
+        for (TalkToTailEvent e : eventList) {
+            Calendar tempDate = e.getEventDate();
 
-        for (TalkToTailEvent e: eventList) {
-            Date tempDate = e.getEventDate();
+            if (tempDate.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)
+                    && tempDate.get(Calendar.YEAR) == date.get(Calendar.YEAR)) {
 
-            if (date.getTime().getDay() == tempDate.getDay()){
-
-                if (e instanceof CareEvent){
-                    calendarEventList.add(calendarEventCare);
-                }
-                if (e instanceof DogEvent){
-                    calendarEventList.add(calendarEventDog);
-                }
-                if (e instanceof TreatmentEvent){
-                    calendarEventList.add(calendarEventTreatment);
-                }
-                if (e instanceof HealthEvent){
-                    calendarEventList.add(calendarEventHealth);
-                }
+                calendarEventList.add(e);
 
             }
         }
         return calendarEventList;
     }
+
 }

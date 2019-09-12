@@ -5,14 +5,17 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.talk2tail.common.model.DogWeighData;
-import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 import com.talk2tail.dogdashboard.view.DogDashboardView;
 import com.talk2tail.ownerdashboard.model.repo.IOwnerDashboardRepo;
 import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import io.reactivex.Scheduler;
 import lombok.Getter;
 import ru.terrakok.cicerone.Router;
