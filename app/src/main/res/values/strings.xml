@@ -33,6 +33,15 @@
     <string name="fab_menu_add_task">Task</string>
     <string name="month">Month</string>
     <string name="calendar">Calendar</string>
+    <string name="about_dog">About dog</string>
+    <string name="veterinary_passport">Veterinary passport</string>
+    <string name="assignment">Assignment</string>
+    <string name="weight">Weight</string>
+    <string name="weigh">Weigh</string>
+    <string name="killogramm">kg</string>
+    <string name="last_wegh">Last weigh</string>
+    <string name="days_ago">days ago</string>
+    <string name="did_not_weigh_record">You did not record the weight of the dog</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
