@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,9 @@ import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class RegisterFragment extends MvpAppCompatFragment implements LoginView, BackButtonListener {
+
+    @BindView(R.id.loading_rl)
+    protected RelativeLayout loadingView;
 
     @BindView(R.id.reg_email_te)
     protected EditText email;
@@ -118,4 +122,15 @@ public class RegisterFragment extends MvpAppCompatFragment implements LoginView,
     public void showErrorMessage(String message) {
         Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void showLoading() {
+        loadingView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingView.setVisibility(View.GONE);
+    }
+
 }

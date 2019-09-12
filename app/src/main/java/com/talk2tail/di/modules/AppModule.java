@@ -1,5 +1,7 @@
 package com.talk2tail.di.modules;
 
+import android.accounts.AccountManager;
+
 import com.talk2tail.App;
 
 import dagger.Module;
@@ -16,6 +18,11 @@ public class AppModule {
     @Provides
     public App app() {
         return this.app;
+    }
+
+    @Provides
+    public AccountManager getAccountManager() {
+        return AccountManager.get(app);
     }
 
 }

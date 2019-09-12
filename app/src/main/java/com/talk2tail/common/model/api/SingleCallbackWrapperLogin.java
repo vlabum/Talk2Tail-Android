@@ -10,7 +10,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
-public abstract class SingleCallbackWrapperLogin<T extends Response> extends DisposableSingleObserver<T> {
+public abstract class SingleCallbackWrapperLogin<T> extends DisposableSingleObserver<T> {
 
     private WeakReference<LoginView> weakReference;
 
@@ -23,6 +23,7 @@ public abstract class SingleCallbackWrapperLogin<T extends Response> extends Dis
     @Override
     public void onError(Throwable e) {
         LoginView view = weakReference.get();
+        view.hideLoading();
         if (e instanceof HttpException) {
             ResponseBody responseBody = ((HttpException) e).response().errorBody();
             view.showErrorMessage(getErrorMessage(responseBody));

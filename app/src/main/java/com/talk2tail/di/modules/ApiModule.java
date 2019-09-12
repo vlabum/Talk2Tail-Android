@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.talk2tail.App;
 import com.talk2tail.common.model.ISystemInfo;
+import com.talk2tail.common.model.api.BooleanTypeAdapter;
 import com.talk2tail.common.model.api.IDataSource;
 
 import javax.inject.Named;
@@ -36,6 +37,8 @@ public class ApiModule {
         return new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .excludeFieldsWithoutExposeAnnotation()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+                .registerTypeAdapter(boolean.class, new BooleanTypeAdapter())
                 .create();
     }
 

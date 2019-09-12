@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,9 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
 
     @BindView(R.id.checkin_text_tv)
     protected TextView checkIn;
+
+    @BindView(R.id.loading_rl)
+    protected RelativeLayout loadingView;
 
     @InjectPresenter
     LoginPresenter presenter;
@@ -97,8 +101,6 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
         String sLogin = login.getText().toString();
         String sPwd = pwd.getText().toString();
         presenter.loginUser(sLogin, sPwd);
-        //TODO: check login
-//        presenter.goToMainActivity();
     }
 
     @Override
@@ -121,5 +123,15 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
     @Override
     public void showErrorMessage(String message) {
         Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+        loadingView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingView.setVisibility(View.GONE);
     }
 }

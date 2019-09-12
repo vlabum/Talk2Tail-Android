@@ -1,6 +1,9 @@
 package com.talk2tail.login.ui;
 
+import android.accounts.AccountManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +19,7 @@ import com.talk2tail.login.view.LoginView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -25,12 +29,21 @@ import ru.terrakok.cicerone.android.support.SupportAppNavigator;
 
 public class LoginActivity extends MvpAppCompatActivity implements LoginView {
 
+    @BindView(R.id.loading_rl)
+    protected RelativeLayout loadingView;
+
     @Inject
     protected NavigatorHolder navigatorHolder;
+
     @InjectPresenter
     LoginPresenter presenter;
+
     private Navigator navigator = new SupportAppNavigator(this, R.id.login_container);
+
     private Unbinder unbinder;
+
+    private AccountManager accountManager;
+
 
     @ProvidePresenter
     protected LoginPresenter createPresenter() {
@@ -46,6 +59,7 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
         setContentView(R.layout.activity_login);
         unbinder = ButterKnife.bind(this);
         presenter.goToLoginFragment();
+
     }
 
     @Override
@@ -84,5 +98,15 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
     @Override
     public void showErrorMessage(String message) {
         Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+        loadingView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingView.setVisibility(View.GONE);
     }
 }
