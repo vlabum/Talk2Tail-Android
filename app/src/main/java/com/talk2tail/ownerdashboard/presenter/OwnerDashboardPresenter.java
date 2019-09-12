@@ -2,7 +2,7 @@ package com.talk2tail.ownerdashboard.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.talk2tail.common.model.event.TalkToTailEvent;
+import com.talk2tail.common.model.entity.TalkToTailEvent;
 import com.talk2tail.ownerdashboard.model.repo.IOwnerDashboardRepo;
 import com.talk2tail.ownerdashboard.presenter.dto.DogItemDTO;
 import com.talk2tail.ownerdashboard.view.OwnerDashboardView;

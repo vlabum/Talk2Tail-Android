@@ -6,8 +6,8 @@ package devs.mulham.horizontalcalendar.model;
  */
 public class CalendarEvent {
 
-    private int color;
-    private String description;
+    protected int color;
+    protected String description;
 
     public CalendarEvent(int color) {
         this.color = color;
