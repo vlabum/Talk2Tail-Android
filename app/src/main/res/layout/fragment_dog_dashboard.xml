@@ -6,14 +6,222 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".dogdashboard.ui.DogDashboardFragment">
 
-    <TextView
-        android:id="@+id/dog_dashboard_text"
-        android:layout_width="wrap_content"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/dog_dash_scroll_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/this_is_dog_dashboard"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/calendarBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dog_menu_layout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relative_dog_dash_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"
+            app:layout_constraintEnd_toEndOf="@+id/scroll_view"
+            app:layout_constraintStart_toStartOf="@+id/scroll_view"
+            app:layout_constraintTop_toTopOf="@+id/scroll_view">
+
+            <GridLayout
+                android:id="@+id/dog_dash_grid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="334dp"
+                android:columnCount="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/events_dog_dash_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="222dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вес"
+                android:textSize="16dp"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintTop_toBottomOf="@+id/events_dog_dash_rv"
+                app:layout_constraintStart_toStartOf="@+id/events_dog_dash_rv" />
+
+            <TextView
+                android:id="@+id/weigh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Взвесить"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintBottom_toTopOf="@+id/current_weight"
+                app:layout_constraintEnd_toStartOf="@+id/weigh_icon" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:id="@+id/weigh_icon"
+                android:src="@drawable/weigh_icon"
+                app:layout_constraintBottom_toTopOf="@+id/current_weight"
+                app:layout_constraintEnd_toEndOf="@+id/events_dog_dash_rv" />
+                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/current_weight"
+                    android:text="-"
+                    android:textSize="16dp"
+                    android:textColor="@color/calendarAccent"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/weight"
+                    app:layout_constraintStart_toStartOf="@+id/events_dog_dash_rv"
+                    />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/last_weigh"
+                android:text="Последнее взвешивание"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintTop_toBottomOf="@+id/current_weight"
+                app:layout_constraintStart_toStartOf="@+id/events_dog_dash_rv"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/max_weight"
+                android:textSize="12dp"
+                android:text="max 30 кг"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintTop_toBottomOf="@+id/last_weigh"
+                app:layout_constraintStart_toStartOf="@+id/events_dog_dash_rv"
+                />
+
+            <com.jjoe64.graphview.GraphView
+                android:layout_width="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_height="80dip"
+                android:id="@+id/graph"
+                android:background="@drawable/graph_back"
+                app:layout_constraintTop_toBottomOf="@+id/max_weight"
+                app:layout_constraintEnd_toEndOf="@+id/events_dog_dash_rv"
+                app:layout_constraintStart_toStartOf="@+id/events_dog_dash_rv"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/min_weight"
+                android:textSize="12dp"
+                android:text="min 22 кг"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintTop_toBottomOf="@+id/graph"
+                app:layout_constraintStart_toStartOf="@+id/events_dog_dash_rv"
+                />
+
+<!--            </LinearLayout>-->
+
+            <devs.mulham.horizontalcalendar.HorizontalCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/calendarBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/min_weight"
+                app:textColorSelected="#999" />
+
+            <TextView
+                android:id="@+id/calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calendar"
+                android:textSize="16dp"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintBottom_toTopOf="@+id/calendarView"
+                app:layout_constraintStart_toStartOf="@+id/events_dog_dash_rv" />
+
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/month"
+                android:textColor="@color/calendarAccent"
+                app:layout_constraintBottom_toTopOf="@+id/calendarView"
+                app:layout_constraintEnd_toEndOf="@+id/events_dog_dash_rv" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/dog_menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dog_search_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/about_dog"
+            android:theme="@style/DogGridMenuButton"
+            app:cornerRadius="0dp"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:textColor="@color/menuItemDisabledTextColor"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dog_filter_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/veterinary_passport"
+            android:theme="@style/DogGridMenuButton"
+            app:cornerRadius="0dp"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:textColor="@color/menuItemDisabledTextColor"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dog_show_all_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/assignment"
+            android:theme="@style/DogGridMenuButton"
+            app:cornerRadius="0dp"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:textColor="@color/menuItemDisabledTextColor"
+            />
+
+    </LinearLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
