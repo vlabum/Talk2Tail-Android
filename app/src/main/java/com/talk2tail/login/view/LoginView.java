@@ -9,4 +9,8 @@ public interface LoginView extends MvpView {
     void showToast(String response); //TODO: потом убрать
 
     void showErrorMessage(String message);
+
+    void showLoading();
+
+    void hideLoading();
 }

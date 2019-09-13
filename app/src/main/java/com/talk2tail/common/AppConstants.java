@@ -12,4 +12,8 @@ public class AppConstants {
     public static final int HEALTH_EVENT = 3;
     public static final int TREATMENT_EVENT = 4;
 
+    public static final String ACCOUNT_TYPE = "com.talk2tail";
+    public static final String AUTH_TYPE = "FULL";
+    public static final String PREFIX_TOKEN = "Token ";
+
 }

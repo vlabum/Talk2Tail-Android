@@ -78,14 +78,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="66dp" />
+        app:layout_constraintGuide_end="12dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_curve_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.717" />
+        app:layout_constraintGuide_end="119dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_text"

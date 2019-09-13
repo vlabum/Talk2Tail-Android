@@ -18,7 +18,7 @@
         style="@style/AppTheme.Button"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/button_shape"
         android:text="@string/login_ok_btn"
         app:layout_constraintEnd_toStartOf="@+id/guideline_curve_right"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.885" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_socnet_bottom"
@@ -207,5 +207,16 @@
         app:layout_constraintStart_toEndOf="@id/vk_civ"
         app:layout_constraintTop_toTopOf="@id/guideline_socnet_top" />
 
+    <RelativeLayout
+        android:id="@+id/loading_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
