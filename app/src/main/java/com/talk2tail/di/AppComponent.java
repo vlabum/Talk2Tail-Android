@@ -4,6 +4,7 @@ import com.talk2tail.di.modules.AppModule;
 import com.talk2tail.di.modules.CiceroneModule;
 import com.talk2tail.di.modules.ImageModule;
 import com.talk2tail.di.modules.RepoModule;
+import com.talk2tail.dogdashboard.presenter.DogAddPresenter;
 import com.talk2tail.dogdashboard.presenter.DogDashboardPresenter;
 import com.talk2tail.dogvaccination.presenter.DogVaccinationPresenter;
 import com.talk2tail.login.presenter.LoginPresenter;
@@ -23,6 +24,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(DogDashboardPresenter dogDashboardPresenter);
+
+    void inject(DogAddPresenter dogAddPresenter);
 
     void inject(OwnerDashboardPresenter ownerDashboardPresenter);
 

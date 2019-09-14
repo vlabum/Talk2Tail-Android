@@ -8,11 +8,11 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.talk2tail.common.AppConstants;
 import com.talk2tail.common.model.api.SingleCallbackWrapperLogin;
-import com.talk2tail.common.model.entity.api.DogShortResponse;
 import com.talk2tail.common.model.entity.api.LoginUser;
 import com.talk2tail.common.model.entity.api.LoginUserResponse;
 import com.talk2tail.common.model.entity.api.RegisterUser;
 import com.talk2tail.common.model.entity.api.RegisterUserResponse;
+import com.talk2tail.common.model.entity.dto.DogShort;
 import com.talk2tail.common.model.repo.IRepo;
 import com.talk2tail.login.view.LoginView;
 import com.talk2tail.navigation.Screens;
@@ -59,7 +59,8 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                 }
                 return;
             } else {
-                getCountDogsAndComeIn(token);
+                repo.setToken(token);
+                getCountDogsAndComeIn(repo.getToken());
             }
         }
         if (account.length == 0) {
@@ -119,8 +120,9 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                             final String token = loginUserResponse.getKey();
                             getViewState().showToast(token);
                             updateAccount(email, pwd, token);
+                            repo.setToken(token);
                             getViewState().hideLoading();
-                            getCountDogsAndComeIn(AppConstants.PREFIX_TOKEN + token);
+                            getCountDogsAndComeIn(repo.getToken());
                         }
                     });
         }
@@ -128,11 +130,11 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
 
     public void getCountDogsAndComeIn(String token) {
         getViewState().showLoading();
-        SingleCallbackWrapperLogin<List<DogShortResponse>> dogsObserver = repo.getDogsShort(token)
+        SingleCallbackWrapperLogin<List<DogShort>> dogsObserver = repo.getDogsShort(token)
                 .observeOn(mainThreadScheduler)
-                .subscribeWith(new SingleCallbackWrapperLogin<List<DogShortResponse>>(getViewState()) {
+                .subscribeWith(new SingleCallbackWrapperLogin<List<DogShort>>(getViewState()) {
                     @Override
-                    public void onSuccess(List<DogShortResponse> dogShortResponses) {
+                    public void onSuccess(List<DogShort> dogShortResponses) {
                         int countDogs = dogShortResponses.size();
                         getViewState().hideLoading();
                         switch (countDogs) {
@@ -154,7 +156,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
         for (Account acc : accs) {
             if (acc.name.equals(email)) {
                 accountManager.setPassword(acc, pwd);
-                accountManager.setAuthToken(acc, AppConstants.AUTH_TYPE, AppConstants.PREFIX_TOKEN + token);
+                accountManager.setAuthToken(acc, AppConstants.AUTH_TYPE, token);
                 return;
             }
         }

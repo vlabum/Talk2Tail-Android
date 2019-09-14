@@ -71,6 +71,10 @@ public class MainPresenter extends MvpPresenter<MainView> {
         router.navigateTo(new Screens.OwnerDashboardScreen());
     }
 
+    public void goToDogAddScreen() {
+        router.navigateTo(new Screens.DogAddScreen());
+    }
+
     public void onFabClick() {
         Timber.d("FAB clicked");
     }

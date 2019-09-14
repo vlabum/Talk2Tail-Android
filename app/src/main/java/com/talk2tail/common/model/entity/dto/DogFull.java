@@ -1,4 +1,4 @@
-package com.talk2tail.common.model.entity.api;
+package com.talk2tail.common.model.entity.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public class DogFullResponse extends Response {
+public class DogFull extends Response {
 
     @Expose
     @SerializedName("id")
@@ -65,18 +65,4 @@ public class DogFullResponse extends Response {
     private String breed;
 
 }
-/*
-     "id": 4,
-     "short_nickname": "secong dog",
-     "full_nickname": "tested2",
-     "photo": null,
-     "gender": "3",
-     "is_sterialized": 1,
-     "birth_date": "2019-08-29T12:27:53.949783+03:00",
-     "pedigree_sequence": null,
-     "chip_sequence": null,
-     "stigma_sequence": null,
-     "created_at": "2019-08-29T12:27:53.949783+03:00",
-     "updated_at": "2019-08-29T12:27:53.949783+03:00",
-     "breed": null
-*/
+

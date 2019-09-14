@@ -6,6 +6,7 @@ import android.content.Intent;
 import androidx.fragment.app.Fragment;
 
 import com.talk2tail.common.AppConstants;
+import com.talk2tail.dogdashboard.ui.DogAddFragment;
 import com.talk2tail.dogdashboard.ui.DogDashboardFragment;
 import com.talk2tail.dogvaccination.ui.DogVaccinationFragment;
 import com.talk2tail.login.ui.LoginFragment;
@@ -23,6 +24,13 @@ public class Screens {
         @Override
         public Fragment getFragment() {
             return DogDashboardFragment.newInstance();
+        }
+    }
+
+    public static class DogAddScreen extends SupportAppScreen {
+        @Override
+        public Fragment getFragment() {
+            return DogAddFragment.newInstance();
         }
     }
 

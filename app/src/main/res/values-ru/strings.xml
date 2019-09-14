@@ -43,6 +43,18 @@
     <string name="last_wegh">Последнее взвешивание</string>
     <string name="days_ago">дней назад</string>
     <string name="did_not_weigh_record">Вы не делали записей о весе собаки</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="dog_s_name">Домашняя кличка</string>
+    <string name="dog_s_full_name">Полная кличка</string>
+    <string name="equals_names">совпадает с домашней кличкой</string>
+    <string name="female_dog">сука</string>
+    <string name="male_dog">кобель</string>
+    <string name="is_sterilized">стерилизован/а</string>
+    <string name="dog_birthday">Дата рождения</string>
+    <string name="dog_name_description">Одно из самых важных и обязательных полей, конечно</string>
+    <string name="dog_fullname_description">Если сюда вписать нечего, отметьте галочку ниже</string>
+    <string name="one_more_required_field">Еще одно обязательное поле</string>
+    <string name="pedigree_num">Номер родословной</string>
 
 
 </resources>

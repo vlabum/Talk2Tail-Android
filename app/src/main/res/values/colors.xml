@@ -8,6 +8,7 @@
     <color name="bottomNavigateActive">#435072</color>
 
     <color name="background">#28314C</color>
+    <color name="backgroundLight">#ECF0F5</color>
     <color name="actionBarColor">#34436D</color>
 
     <color name="inputHint">#6F7184</color>
