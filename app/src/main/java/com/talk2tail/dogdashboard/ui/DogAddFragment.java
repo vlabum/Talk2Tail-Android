@@ -163,6 +163,7 @@ public class DogAddFragment extends MvpAppCompatFragment
         ArrayAdapter<Breed> adapter;
         adapter = new ArrayAdapter<Breed>(App.getInstance().getApplicationContext(),
                 android.R.layout.simple_spinner_item, presenter.getDogBreeds());
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         breed.setAdapter(adapter);
     }
@@ -170,7 +171,7 @@ public class DogAddFragment extends MvpAppCompatFragment
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.add_dog_breeds_s) {
-            Breed breed = (Breed) ((Spinner) parent).getSelectedItem();
+            Breed breed = (Breed) parent.getSelectedItem();
             presenter.getBreedColors(breed.getId());
         }
     }
