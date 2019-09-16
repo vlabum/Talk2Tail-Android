@@ -1,5 +1,6 @@
 package com.talk2tail.common.model.api;
 
+import com.talk2tail.common.model.api.dto.UserInfoFull;
 import com.talk2tail.common.model.entity.api.DogShortResponse;
 import com.talk2tail.common.model.entity.api.LoginUser;
 import com.talk2tail.common.model.entity.api.LoginUserResponse;
@@ -24,5 +25,8 @@ public interface IDataSource {
 
     @GET("/api/v1/user/dogs/")
     Single<List<DogShortResponse>> getDogsShort(@Header("authorization") String token);
+
+    @GET("/api/v1/rest-auth/user/show")
+    Single<List<UserInfoFull>> getUserFull(@Header("Authorization") String token);
 
 }

@@ -14,6 +14,7 @@ import com.talk2tail.main.ui.MainActivity;
 import com.talk2tail.ownerdashboard.ui.OwnerDashEmptyFragment;
 import com.talk2tail.ownerdashboard.ui.OwnerDashOneFragment;
 import com.talk2tail.ownerdashboard.ui.OwnerDashboardFragment;
+import com.talk2tail.userprofile.ui.UserProfileFragment;
 
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
@@ -86,4 +87,9 @@ public class Screens {
         }
     }
 
+    public static class UserProfileScreen extends SupportAppScreen {
+        public Fragment getFragment() {
+            return UserProfileFragment.newInstance();
+        }
+    }
 }
