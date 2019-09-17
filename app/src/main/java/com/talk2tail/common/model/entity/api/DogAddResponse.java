@@ -5,12 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import com.talk2tail.common.model.api.Response;
 
 import java.util.Date;
-import java.util.List;
 
-import lombok.Getter;
-
-@Getter
-public class DogFullResponse extends Response {
+public class DogAddResponse extends Response {
 
     @Expose
     @SerializedName("id")
@@ -25,16 +21,12 @@ public class DogFullResponse extends Response {
     private String fullNickname;
 
     @Expose
-    @SerializedName("photo")
-    private String photo;
-
-    @Expose
     @SerializedName("gender")
-    private int gender;
+    private String gender;
 
     @Expose
     @SerializedName("is_sterialized")
-    private boolean isSterialized; //TODO: class BooleanTypeAdapter implements JsonDeserializer<Boolean>
+    private boolean isSterialized;
 
     @Expose
     @SerializedName("birth_date")
@@ -42,15 +34,15 @@ public class DogFullResponse extends Response {
 
     @Expose
     @SerializedName("pedigree_sequence")
-    private List<Object> pedigreeSequence;
+    private String pedigree;
 
     @Expose
     @SerializedName("chip_sequence")
-    private List<Object> chipSequence;
+    private String chip;
 
     @Expose
     @SerializedName("stigma_sequence")
-    private List<Object> stigmaSequence;
+    private String stigma;
 
     @Expose
     @SerializedName("created_at")
@@ -62,21 +54,10 @@ public class DogFullResponse extends Response {
 
     @Expose
     @SerializedName("breed")
-    private String breed;
+    private int breed;
+
+    @Expose
+    @SerializedName("color")
+    private int color;
 
 }
-/*
-     "id": 4,
-     "short_nickname": "secong dog",
-     "full_nickname": "tested2",
-     "photo": null,
-     "gender": "3",
-     "is_sterialized": 1,
-     "birth_date": "2019-08-29T12:27:53.949783+03:00",
-     "pedigree_sequence": null,
-     "chip_sequence": null,
-     "stigma_sequence": null,
-     "created_at": "2019-08-29T12:27:53.949783+03:00",
-     "updated_at": "2019-08-29T12:27:53.949783+03:00",
-     "breed": null
-*/

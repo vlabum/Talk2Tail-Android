@@ -1,4 +1,4 @@
-package com.talk2tail.common.model.entity.api;
+package com.talk2tail.common.model.entity.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 import lombok.Getter;
 
-public class DogShortResponse extends Response {
+public class DogShort extends Response {
 
     @Getter
     @Expose
