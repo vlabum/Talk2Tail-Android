@@ -42,9 +42,18 @@
     <string name="last_wegh">Last weigh</string>
     <string name="days_ago">days ago</string>
     <string name="did_not_weigh_record">You did not record the weight of the dog</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="add_photo">Add photo</string>
+    <string name="dog_s_name">Dog\'s name</string>
+    <string name="dog_s_full_name">Dog\'s full name</string>
+    <string name="equals_names">matches home name</string>
+    <string name="female_dog">female</string>
+    <string name="male_dog">male</string>
+    <string name="is_sterilized">is sterilized</string>
+    <string name="dog_birthday">Birthday</string>
+    <string name="dog_name_description">Одно из самых важных и обязательных полей, конечно</string>
+    <string name="dog_fullname_description">Если сюда вписать нечего, отметьте галочку ниже</string>
+    <string name="one_more_required_field">Еще одно обязательное поле</string>
+    <string name="pedigree_num">Номер родословной</string>
+    <string name="create">Create</string>
 
 </resources>

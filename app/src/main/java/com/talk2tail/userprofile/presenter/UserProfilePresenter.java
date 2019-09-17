@@ -19,18 +19,14 @@ import ru.terrakok.cicerone.Router;
 @InjectViewState
 public class UserProfilePresenter extends MvpPresenter<UserProfileView> {
 
-    private Scheduler mainThreadScheduler;
-
-    Disposable disposable;
-
     @Inject
     protected Router router;
-
     @Inject
     protected IRepo repo;
-
     @Inject
     protected AccountManager accountManager;
+    Disposable disposable;
+    private Scheduler mainThreadScheduler;
 
     public UserProfilePresenter(Scheduler mainThreadScheduler) {
         this.mainThreadScheduler = mainThreadScheduler;
@@ -50,7 +46,7 @@ public class UserProfilePresenter extends MvpPresenter<UserProfileView> {
                 .observeOn(mainThreadScheduler)
                 .subscribe(userInfoFullList -> {
                     final UserInfoFull info = userInfoFullList.get(0);
-                    getViewState().setName(info.getFirstName()+" "+info.getLastName());
+                    getViewState().setName(info.getFirstName() + " " + info.getLastName());
                     if (info.getCityId() != null) {
                         getViewState().setCity(info.getCityId().toString());    //TODO: получить город по его id
                     }

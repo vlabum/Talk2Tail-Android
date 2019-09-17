@@ -256,7 +256,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
                 hideFabMenu();
                 break;
             case R.id.add_dog_fab_menu_cv:
-                Toast.makeText(this, "Add Dog", Toast.LENGTH_SHORT).show();
+                presenter.goToDogAddScreen();
                 break;
             case R.id.add_audio_fab_menu_cv:
                 Toast.makeText(this, "Add Audio", Toast.LENGTH_SHORT).show();
@@ -270,5 +270,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
             default:
                 Toast.makeText(this, "aaaaaaaaaaaaaaaaaaaaaaaaa", Toast.LENGTH_SHORT).show();
         }
+        hideFabMenu();
     }
 }

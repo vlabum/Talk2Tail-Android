@@ -32,27 +32,21 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class UserProfileFragment extends MvpAppCompatFragment implements UserProfileView, BackButtonListener {
 
-    private View view;
-    private Unbinder unbinder;
-
     @Inject
     @Named("Glide")
     protected IImageLoader<ImageView> imageLoader;
-
     @InjectPresenter
     UserProfilePresenter presenter;
-
     @BindView(R.id.user_photo)
     CircleImageView userPhotoView;
-
     @BindView(R.id.user_name)
     TextView userName;
-
     @BindView(R.id.user_city)
     TextView userCity;
-
     @BindView(R.id.user_phone)
     TextView userPhone;
+    private View view;
+    private Unbinder unbinder;
 
     public UserProfileFragment() {
         // Required empty public constructor

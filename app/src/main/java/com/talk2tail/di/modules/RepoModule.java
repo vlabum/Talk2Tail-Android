@@ -7,6 +7,8 @@ import com.talk2tail.common.model.repo.Repo;
 import com.talk2tail.ownerdashboard.model.repo.IOwnerDashboardRepo;
 import com.talk2tail.ownerdashboard.model.repo.OwnerDashboardRepo;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -14,6 +16,7 @@ import dagger.Provides;
 public class RepoModule {
 
     @Provides
+    @Singleton
     IRepo repo(IDataSource dataSource, INetworkStatus networkStatus) {
         return new Repo(dataSource, networkStatus);
     }
