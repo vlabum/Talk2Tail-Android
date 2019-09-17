@@ -50,4 +50,6 @@
     <color name="calendarBackground">#FFFFFF</color>
     <color name="calendarAccent">#28314C</color>
 
+    <color name="backgroundWhite">#E5E5E5</color>
+
 </resources>

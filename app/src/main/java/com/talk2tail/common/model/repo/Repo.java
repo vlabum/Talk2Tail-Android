@@ -3,6 +3,7 @@ package com.talk2tail.common.model.repo;
 import com.talk2tail.common.AppConstants;
 import com.talk2tail.common.model.INetworkStatus;
 import com.talk2tail.common.model.api.IDataSource;
+import com.talk2tail.common.model.api.dto.UserInfoFull;
 import com.talk2tail.common.model.entity.api.BreedColorsResponse;
 import com.talk2tail.common.model.entity.api.DogAddRequest;
 import com.talk2tail.common.model.entity.api.LoginUser;
@@ -91,6 +92,14 @@ public class Repo implements IRepo {
     public Single<DogFull> createDog(String token, IDog dog) {
         if (networkStatus.isOnline()) {
             return dataSource.createDog(token, new DogAddRequest(dog)).subscribeOn(Schedulers.io());
+        }
+        //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
+        return null;
+    }
+
+    public Single<List<UserInfoFull>> getUserFull(String token) {
+        if (networkStatus.isOnline()) {
+            return dataSource.getUserFull(token).subscribeOn(Schedulers.io());
         }
         //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
         return null;

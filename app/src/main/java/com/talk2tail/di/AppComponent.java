@@ -14,6 +14,7 @@ import com.talk2tail.main.ui.MainActivity;
 import com.talk2tail.ownerdashboard.presenter.OwnerDashboardPresenter;
 import com.talk2tail.ownerdashboard.ui.DogItemBigView;
 import com.talk2tail.ownerdashboard.ui.DogItemView;
+import com.talk2tail.userprofile.presenter.UserProfilePresenter;
 
 import javax.inject.Singleton;
 
@@ -43,4 +44,5 @@ public interface AppComponent {
 
     void inject(DogItemBigView v);
 
+    void inject(UserProfilePresenter userProfilePresenter);
 }

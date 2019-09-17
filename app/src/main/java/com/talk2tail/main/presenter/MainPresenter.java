@@ -79,4 +79,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
         Timber.d("FAB clicked");
     }
 
+    public void goToUserProfileScreen() {
+        router.navigateTo(new Screens.UserProfileScreen());
+    }
 }

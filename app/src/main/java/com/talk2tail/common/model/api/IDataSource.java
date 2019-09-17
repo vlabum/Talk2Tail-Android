@@ -1,5 +1,6 @@
 package com.talk2tail.common.model.api;
 
+import com.talk2tail.common.model.api.dto.UserInfoFull;
 import com.talk2tail.common.model.entity.api.BreedColorsResponse;
 import com.talk2tail.common.model.entity.api.DogAddRequest;
 import com.talk2tail.common.model.entity.api.LoginUser;
@@ -38,5 +39,8 @@ public interface IDataSource {
 
     @POST("/api/v1/user/dogs/create/")
     Single<DogFull> createDog(@Header("authorization") String token, @Body DogAddRequest dogAddRequest);
+
+    @GET("/api/v1/rest-auth/user/show")
+    Single<List<UserInfoFull>> getUserFull(@Header("Authorization") String token);
 
 }

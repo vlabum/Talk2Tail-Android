@@ -1,5 +1,6 @@
 package com.talk2tail.common.model.repo;
 
+import com.talk2tail.common.model.api.dto.UserInfoFull;
 import com.talk2tail.common.model.entity.api.BreedColorsResponse;
 import com.talk2tail.common.model.entity.api.LoginUser;
 import com.talk2tail.common.model.entity.api.LoginUserResponse;
@@ -32,4 +33,5 @@ public interface IRepo {
 
     Single<DogFull> createDog(String token, IDog dogAddRequest);
 
+    Single<List<UserInfoFull>> getUserFull(String token);
 }
