@@ -31,49 +31,76 @@ import com.talk2tail.dogdashboard.view.DogAddView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class DogAddFragment extends MvpAppCompatFragment
-        implements DogAddView, BackButtonListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
+        implements View.OnClickListener, DogAddView, BackButtonListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.add_dog_equals_names_cb)
-    CheckBox equalsNames;
+    CheckBox equalsNamesView;
+
     @BindView(R.id.add_dog_is_sterilized_cb)
-    CheckBox isSterilized;
+    CheckBox isSterilizedView;
+
     @BindView(R.id.add_dog_photo_iv)
-    ImageView photo;
+    ImageView photoView;
+
     @BindView(R.id.add_dog_add_photo_iv)
-    ImageView addPhoto;
+    ImageView addPhotoView;
+
     @BindView(R.id.add_dog_sex_rg)
-    RadioGroup sexRg;
+    RadioGroup sexRgView;
+
     @BindView(R.id.add_dog_sex_female)
-    RadioButton sexFemale;
+    RadioButton sexFemaleView;
+
     @BindView(R.id.add_dog_sex_male)
-    RadioButton sexMale;
+    RadioButton sexMaleView;
+
     @BindView(R.id.add_dog_breeds_s)
-    Spinner breed;
+    Spinner breedView;
+
     @BindView(R.id.add_dog_colors_s)
-    Spinner color;
+    Spinner colorView;
+
     @BindView(R.id.add_dog_name_te)
-    TextView name;
+    TextView nameView;
+
     @BindView(R.id.add_dog_full_name_te)
-    TextView fullName;
+    TextView fullNameView;
+
     @BindView(R.id.add_dog_birthday_te)
     TextView birthday;
+
     @BindView(R.id.add_dog_pedigree_te)
-    View pedigree;
+    TextView pedigreeView;
+
     @BindView(R.id.add_dog_stigma_te)
-    TextView stigma;
+    TextView stigmaView;
+
     @BindView(R.id.add_dog_chip_te)
-    TextView chip;
+    TextView chipView;
+
+    @BindView(R.id.save_btn)
+    TextView saveBtn;
+
     @InjectPresenter
     DogAddPresenter presenter;
+
     private View view;
+
     private Unbinder unbinder;
+
     private String sex;
+
+    private Breed breed;
+
+    private TalkToTailColor color;
 
     public DogAddFragment() {
         // Required empty public constructor
@@ -95,14 +122,15 @@ public class DogAddFragment extends MvpAppCompatFragment
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_dog_add, container, false);
         unbinder = ButterKnife.bind(this, view);
-        if (sexFemale.isChecked()) {
+        if (sexFemaleView.isChecked()) {
             sex = "F";
         }
-        if (sexMale.isChecked()) {
+        if (sexMaleView.isChecked()) {
             sex = "M";
         }
-        sexRg.setOnCheckedChangeListener(this);
-        breed.setOnItemSelectedListener(this);
+        sexRgView.setOnCheckedChangeListener(this);
+        breedView.setOnItemSelectedListener(this);
+        saveBtn.setOnClickListener(this);
         return view;
     }
 
@@ -140,7 +168,7 @@ public class DogAddFragment extends MvpAppCompatFragment
         adapter = new ArrayAdapter<TalkToTailColor>(App.getInstance().getApplicationContext(),
                 android.R.layout.simple_spinner_item, presenter.getColorBreeds());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        color.setAdapter(adapter);
+        colorView.setAdapter(adapter);
     }
 
     @Override
@@ -165,19 +193,38 @@ public class DogAddFragment extends MvpAppCompatFragment
                 android.R.layout.simple_spinner_item, presenter.getDogBreeds());
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        breed.setAdapter(adapter);
+        breedView.setAdapter(adapter);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId() == R.id.add_dog_breeds_s) {
-            Breed breed = (Breed) parent.getSelectedItem();
-            presenter.getBreedColors(breed.getId());
+        switch (parent.getId()) {
+            case R.id.add_dog_breeds_s:
+                breed = (Breed) parent.getSelectedItem();
+                presenter.getBreedColors(breed.getId());
+                break;
+            case R.id.add_dog_colors_s:
+                color = (TalkToTailColor) parent.getSelectedItem();
+                break;
         }
+
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.save_btn) {
+            breed = (Breed) breedView.getSelectedItem();
+            color = (TalkToTailColor) colorView.getSelectedItem();
+            final int sterilized = isSterilizedView.isChecked() ? 1 : 0;
+            presenter.addNewDog(
+                    nameView.getText().toString(), fullNameView.getText().toString(), null,
+                    sex, sterilized, new Date(), pedigreeView.getText().toString(),
+                    chipView.getText().toString(), stigmaView.getText().toString(), breed, color);
+        }
     }
 }

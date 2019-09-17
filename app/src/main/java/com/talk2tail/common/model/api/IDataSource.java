@@ -1,11 +1,13 @@
 package com.talk2tail.common.model.api;
 
 import com.talk2tail.common.model.entity.api.BreedColorsResponse;
+import com.talk2tail.common.model.entity.api.DogAddRequest;
 import com.talk2tail.common.model.entity.api.LoginUser;
 import com.talk2tail.common.model.entity.api.LoginUserResponse;
 import com.talk2tail.common.model.entity.api.RegisterUser;
 import com.talk2tail.common.model.entity.api.RegisterUserResponse;
 import com.talk2tail.common.model.entity.dto.Breed;
+import com.talk2tail.common.model.entity.dto.DogFull;
 import com.talk2tail.common.model.entity.dto.DogShort;
 
 import java.util.List;
@@ -33,5 +35,8 @@ public interface IDataSource {
 
     @GET("/api/v1/user/dogs/colorbreeds/{id}/")
     Single<List<BreedColorsResponse>> getBreedColors(@Header("authorization") String token, @Path("id") int id);
+
+    @POST("/api/v1/user/dogs/create/")
+    Single<DogFull> createDog(@Header("authorization") String token, @Body DogAddRequest dogAddRequest);
 
 }

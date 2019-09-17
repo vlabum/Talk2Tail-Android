@@ -12,28 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/save_btn"
+            style="@style/AppTheme.Button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_shape"
+            android:text="@string/create"
+            app:layout_constraintEnd_toStartOf="@+id/start_gl"
+            app:layout_constraintStart_toStartOf="@+id/end_gl"
+            app:layout_constraintTop_toBottomOf="@id/add_dog_chip_til" />
+
         <CheckBox
             android:id="@+id/add_dog_equals_names_cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:text="@string/equals_names"
             app:layout_constraintStart_toStartOf="@id/start_gl"
-            app:layout_constraintTop_toBottomOf="@id/add_dog_full_name_til" />
+            app:layout_constraintTop_toBottomOf="@id/add_dog_full_name_hint_tv" />
 
         <CheckBox
             android:id="@+id/add_dog_is_sterilized_cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             android:text="@string/is_sterilized"
             app:layout_constraintStart_toStartOf="@id/start_gl"
             app:layout_constraintTop_toBottomOf="@id/add_dog_sex_rg" />
 
         <ImageView
             android:id="@+id/add_dog_photo_iv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_t2t_empty_photo"
             app:layout_constraintEnd_toEndOf="@id/end_gl"
             app:layout_constraintStart_toStartOf="@id/start_gl"
@@ -52,7 +66,7 @@
             android:id="@+id/add_dog_sex_rg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="@id/start_gl"
             app:layout_constraintTop_toBottomOf="@id/add_dog_equals_names_cb">
@@ -68,7 +82,7 @@
                 android:id="@+id/add_dog_sex_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
                 android:text="@string/male_dog" />
 
         </RadioGroup>
@@ -76,16 +90,16 @@
         <Spinner
             android:id="@+id/add_dog_breeds_s"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@id/end_gl"
             app:layout_constraintStart_toStartOf="@id/start_gl"
-            app:layout_constraintTop_toBottomOf="@id/add_dog_birthday_til" />
+            app:layout_constraintTop_toBottomOf="@id/add_dog_birthday_hint_tv" />
 
         <Spinner
             android:id="@+id/add_dog_colors_s"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@id/end_gl"
             app:layout_constraintStart_toStartOf="@id/start_gl"
@@ -100,6 +114,7 @@
             app:layout_constraintEnd_toStartOf="@id/add_dog_add_photo_iv"
             app:layout_constraintTop_toBottomOf="@id/add_dog_photo_iv" />
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,13 +122,14 @@
             app:layout_constraintStart_toStartOf="@id/start_gl"
             app:layout_constraintTop_toBottomOf="@id/add_dog_name_til" />
 
-
         <TextView
+            android:id="@+id/add_dog_full_name_hint_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dog_fullname_description"
             app:layout_constraintStart_toStartOf="@id/start_gl"
             app:layout_constraintTop_toBottomOf="@id/add_dog_full_name_til" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -122,8 +138,8 @@
             app:layout_constraintBottom_toTopOf="@id/add_dog_birthday_til"
             app:layout_constraintStart_toStartOf="@id/start_gl" />
 
-
         <TextView
+            android:id="@+id/add_dog_birthday_hint_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/one_more_required_field"
@@ -148,7 +164,7 @@
             android:id="@+id/add_dog_name_til"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="40dp"
             android:theme="@style/TextInputLayoutAppearance"
             app:layout_constraintEnd_toEndOf="@id/end_gl"
             app:layout_constraintStart_toStartOf="@id/start_gl"
@@ -198,6 +214,7 @@
                 android:id="@+id/add_dog_birthday_te"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:drawableEnd="@drawable/ic_t2t_date_range"
                 android:hint="@string/dog_birthday"
                 android:inputType="text"
                 tools:ignore="Autofill" />
@@ -224,6 +241,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/add_dog_stigma_til"
             android:layout_width="0dp"
@@ -244,7 +262,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/add_dog_chip_til"
             android:layout_width="0dp"
@@ -264,6 +281,7 @@
                 tools:ignore="Autofill" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

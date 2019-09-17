@@ -187,9 +187,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
             case R.id.menu_nodog:
                 presenter.goToOwnerDashEmpty();
                 return true;
-            case R.id.menu_adddog:
-                presenter.goToDogAddScreen();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }

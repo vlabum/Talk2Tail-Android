@@ -100,6 +100,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                         final String token = registerUserResponse.getKey();
                         getViewState().showToast(registerUserResponse.getKey());
                         updateAccount(email, pwd1, token);
+                        repo.setToken(token);
                         getViewState().hideLoading();
                         comeIn(AppConstants.OWNER_DASH_NO_DOG);
                     }

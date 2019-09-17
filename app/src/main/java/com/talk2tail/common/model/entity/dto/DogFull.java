@@ -5,12 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import com.talk2tail.common.model.api.Response;
 
 import java.util.Date;
-import java.util.List;
 
-import lombok.Getter;
-
-@Getter
-public class DogFull extends Response {
+public class DogFull extends Response implements IDog {
 
     @Expose
     @SerializedName("id")
@@ -30,11 +26,11 @@ public class DogFull extends Response {
 
     @Expose
     @SerializedName("gender")
-    private int gender;
+    private String gender;
 
     @Expose
     @SerializedName("is_sterialized")
-    private boolean isSterialized; //TODO: class BooleanTypeAdapter implements JsonDeserializer<Boolean>
+    private int isSterilized;
 
     @Expose
     @SerializedName("birth_date")
@@ -42,15 +38,15 @@ public class DogFull extends Response {
 
     @Expose
     @SerializedName("pedigree_sequence")
-    private List<Object> pedigreeSequence;
+    private String pedigreeSequence;
 
     @Expose
     @SerializedName("chip_sequence")
-    private List<Object> chipSequence;
+    private String chip;
 
     @Expose
     @SerializedName("stigma_sequence")
-    private List<Object> stigmaSequence;
+    private String stigmaSequence;
 
     @Expose
     @SerializedName("created_at")
@@ -62,7 +58,178 @@ public class DogFull extends Response {
 
     @Expose
     @SerializedName("breed")
-    private String breed;
+    private int breed;
+
+    @Expose
+    @SerializedName("color")
+    private int color;
+
+
+    public DogFull(
+            String shortNickname,
+            String fullNickname,
+            String photo,
+            String gender,
+            int isSterilized,
+            Date birthDate,
+            String pedigree,
+            String chip,
+            String stigma,
+            Breed breed,
+            TalkToTailColor color
+    ) {
+        this.shortNickname = shortNickname;
+        this.fullNickname = fullNickname;
+        this.photo = photo;
+        this.gender = gender;
+        this.isSterilized = isSterilized;
+        this.birthDate = birthDate;
+        this.pedigreeSequence = pedigree;
+        this.chip = chip;
+        this.stigmaSequence = stigma;
+        this.breed = breed.getId();
+        this.color = color.getId();
+    }
+
+    @Override
+    public int getIsSterilized() {
+        return isSterilized;
+    }
+
+    @Override
+    public void setIsSterilized(int isSterilized) {
+        this.isSterilized = isSterilized;
+    }
+
+    @Override
+    public String getChip() {
+        return chip;
+    }
+
+    @Override
+    public void setChip(String chip) {
+        this.chip = chip;
+    }
+
+    @Override
+    public int getBreed() {
+        return breed;
+    }
+
+    @Override
+    public void setBreed(Breed breed) {
+        this.breed = breed.getId();
+    }
+
+    @Override
+    public int getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(TalkToTailColor color) {
+        this.color = color.getId();
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getShortNickname() {
+        return shortNickname;
+    }
+
+    @Override
+    public void setShortNickname(String shortNickname) {
+        this.shortNickname = shortNickname;
+    }
+
+    @Override
+    public String getFullNickname() {
+        return fullNickname;
+    }
+
+    @Override
+    public void setFullNickname(String fullNickname) {
+        this.fullNickname = fullNickname;
+    }
+
+    @Override
+    public String getPhoto() {
+        return photo;
+    }
+
+    @Override
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    @Override
+    public String getGender() {
+        return gender;
+    }
+
+    @Override
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    @Override
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Override
+    public String getPedigree() {
+        return pedigreeSequence;
+    }
+
+    @Override
+    public void setPedigree(String pedigreeSequence) {
+        this.pedigreeSequence = pedigreeSequence;
+    }
+
+    @Override
+    public String getStigma() {
+        return stigmaSequence;
+    }
+
+    @Override
+    public void setStigma(String stigmaSequence) {
+        this.stigmaSequence = stigmaSequence;
+    }
+
+    @Override
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    @Override
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @Override
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
 }
 

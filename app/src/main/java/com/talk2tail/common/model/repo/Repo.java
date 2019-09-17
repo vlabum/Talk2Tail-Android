@@ -4,12 +4,15 @@ import com.talk2tail.common.AppConstants;
 import com.talk2tail.common.model.INetworkStatus;
 import com.talk2tail.common.model.api.IDataSource;
 import com.talk2tail.common.model.entity.api.BreedColorsResponse;
+import com.talk2tail.common.model.entity.api.DogAddRequest;
 import com.talk2tail.common.model.entity.api.LoginUser;
 import com.talk2tail.common.model.entity.api.LoginUserResponse;
 import com.talk2tail.common.model.entity.api.RegisterUser;
 import com.talk2tail.common.model.entity.api.RegisterUserResponse;
 import com.talk2tail.common.model.entity.dto.Breed;
+import com.talk2tail.common.model.entity.dto.DogFull;
 import com.talk2tail.common.model.entity.dto.DogShort;
+import com.talk2tail.common.model.entity.dto.IDog;
 
 import java.util.List;
 
@@ -79,6 +82,15 @@ public class Repo implements IRepo {
     public Single<List<BreedColorsResponse>> getBreedColors(String token, int id) {
         if (networkStatus.isOnline()) {
             return dataSource.getBreedColors(token, id).subscribeOn(Schedulers.io());
+        }
+        //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
+        return null;
+    }
+
+    @Override
+    public Single<DogFull> createDog(String token, IDog dog) {
+        if (networkStatus.isOnline()) {
+            return dataSource.createDog(token, new DogAddRequest(dog)).subscribeOn(Schedulers.io());
         }
         //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
         return null;

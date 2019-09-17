@@ -6,7 +6,9 @@ import com.talk2tail.common.model.entity.api.LoginUserResponse;
 import com.talk2tail.common.model.entity.api.RegisterUser;
 import com.talk2tail.common.model.entity.api.RegisterUserResponse;
 import com.talk2tail.common.model.entity.dto.Breed;
+import com.talk2tail.common.model.entity.dto.DogFull;
 import com.talk2tail.common.model.entity.dto.DogShort;
+import com.talk2tail.common.model.entity.dto.IDog;
 
 import java.util.List;
 
@@ -27,5 +29,7 @@ public interface IRepo {
     Single<List<Breed>> getBreeds(String token);
 
     Single<List<BreedColorsResponse>> getBreedColors(String token, int id);
+
+    Single<DogFull> createDog(String token, IDog dogAddRequest);
 
 }

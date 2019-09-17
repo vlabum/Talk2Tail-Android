@@ -54,5 +54,6 @@
     <string name="dog_fullname_description">Если сюда вписать нечего, отметьте галочку ниже</string>
     <string name="one_more_required_field">Еще одно обязательное поле</string>
     <string name="pedigree_num">Номер родословной</string>
+    <string name="create">Create</string>
 
 </resources>

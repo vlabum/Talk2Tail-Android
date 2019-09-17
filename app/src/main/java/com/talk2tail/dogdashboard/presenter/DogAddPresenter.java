@@ -9,11 +9,13 @@ import com.talk2tail.common.model.api.SingleCallbackWrapperAddDog;
 import com.talk2tail.common.model.entity.TalkToTailEvent;
 import com.talk2tail.common.model.entity.api.BreedColorsResponse;
 import com.talk2tail.common.model.entity.dto.Breed;
+import com.talk2tail.common.model.entity.dto.DogFull;
 import com.talk2tail.common.model.entity.dto.TalkToTailColor;
 import com.talk2tail.common.model.repo.IRepo;
 import com.talk2tail.dogdashboard.view.DogAddView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -88,8 +90,20 @@ public class DogAddPresenter extends MvpPresenter<DogAddView> {
 
     }
 
-    public void addNewDog() {
-
+    public void addNewDog(
+            String shortNickname, String fullNickname, String photo, String gender, int isSterilized,
+            Date birthDate, String pedigree, String chip, String stigma, Breed breed, TalkToTailColor color
+    ) {
+        final DogFull dog = new DogFull(shortNickname, fullNickname, photo, gender, isSterilized,
+                birthDate, pedigree, chip, stigma, breed, color);
+        SingleCallbackWrapperAddDog<DogFull> dogResp = repo.createDog(repo.getToken(), dog)
+                .observeOn(mainThreadScheduler)
+                .subscribeWith(new SingleCallbackWrapperAddDog<DogFull>(getViewState()) {
+                    @Override
+                    public void onSuccess(DogFull dogFull) {
+                        getViewState().showErrorMessage("DOG DOBAVLEN");
+                    }
+                });
     }
 
 }
