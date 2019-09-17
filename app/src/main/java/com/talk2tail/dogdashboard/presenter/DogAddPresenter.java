@@ -102,6 +102,7 @@ public class DogAddPresenter extends MvpPresenter<DogAddView> {
                     @Override
                     public void onSuccess(DogFull dogFull) {
                         getViewState().showErrorMessage("DOG DOBAVLEN");
+                        router.exit();
                     }
                 });
     }
