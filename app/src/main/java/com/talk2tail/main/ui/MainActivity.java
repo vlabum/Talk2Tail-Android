@@ -1,5 +1,8 @@
 package com.talk2tail.main.ui;
 
+import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -25,6 +28,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.talk2tail.App;
 import com.talk2tail.R;
+import com.talk2tail.common.AppConstants;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.dogdashboard.ui.DogDashboardFragment;
 import com.talk2tail.dogvaccination.ui.DogVaccinationFragment;
@@ -44,6 +48,7 @@ import butterknife.Unbinder;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
+import timber.log.Timber;
 
 public class MainActivity extends MvpAppCompatActivity implements MainView, View.OnClickListener {
 
@@ -73,6 +78,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
     protected NavigatorHolder navigatorHolder;
 
     private Navigator navigator = new SupportAppNavigator(this, R.id.main_container);
+
+    private AccountManager accountManager;
 
     private Unbinder unbinder;
 
@@ -119,7 +126,9 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         super.onCreate(savedInstanceState);
         App.getInstance().getAppComponent().inject(this);
         setContentView(R.layout.activity_main);
+        accountManager = AccountManager.get(this);
         unbinder = ButterKnife.bind(this);
+
         final BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.fabBackground)));
@@ -130,6 +139,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         addEvent.setOnClickListener(this);
         addTask.setOnClickListener(this);
         int countPets = getIntent().getIntExtra("countPets", 0);
+        getTokenForAccountCreateIfNeeded(AppConstants.ACCOUNT_TYPE, AppConstants.AUTH_TOKEN_TYPE);
         presenter.setCountPets(countPets);
     }
 
@@ -272,4 +282,30 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         }
         hideFabMenu();
     }
+
+    private void getTokenForAccountCreateIfNeeded(String accountType, String authTokenType) {
+        final AccountManagerFuture<Bundle> future = accountManager.getAuthTokenByFeatures(accountType, authTokenType, null, this, null, null,
+                new AccountManagerCallback<Bundle>() {
+                    @Override
+                    public void run(AccountManagerFuture<Bundle> future) {
+                        Bundle bnd = null;
+                        try {
+                            bnd = future.getResult();
+                            final String authtoken = bnd.getString(AccountManager.KEY_AUTHTOKEN);
+                            showMessage(((authtoken != null) ? "SUCCESS!\ntoken: " + authtoken : "FAIL"));
+                            Timber.d("GetTokenForAccount Bundle is " + bnd);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            showMessage(e.getMessage());
+                        }
+                    }
+                }
+                , null);
+    }
+
+    public void showMessage(String message) {
+        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
 }

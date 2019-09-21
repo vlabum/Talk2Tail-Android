@@ -25,6 +25,8 @@ public interface IRepo {
 
     Single<LoginUserResponse> loginUser(LoginUser loginUser);
 
+    LoginUserResponse loginUserAuth(LoginUser loginUser);
+
     Single<List<DogShort>> getDogsShort(String token);
 
     Single<List<Breed>> getBreeds(String token);

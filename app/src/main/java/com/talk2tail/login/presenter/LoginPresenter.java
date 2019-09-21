@@ -2,7 +2,6 @@ package com.talk2tail.login.presenter;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.text.TextUtils;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -50,8 +49,9 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
         super.onFirstViewAttach();
         Account[] account = accountManager.getAccountsByType(AppConstants.ACCOUNT_TYPE);
         //TODO: сделать выбор аккаунта, если их более чем 1
+        /*
         if (account.length == 1) {
-            final String token = accountManager.peekAuthToken(account[0], AppConstants.AUTH_TYPE);
+            final String token = accountManager.peekAuthToken(account[0], AppConstants.AUTH_TOKEN_TYPE);
             if (TextUtils.isEmpty(token)) {
                 final String pwd = accountManager.getPassword(account[0]);
                 if (pwd != null) {
@@ -63,6 +63,8 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                 getCountDogsAndComeIn(repo.getToken());
             }
         }
+
+         */
         if (account.length == 0) {
             getViewState().showErrorMessage("no accounts");
         }
@@ -157,13 +159,13 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
         for (Account acc : accs) {
             if (acc.name.equals(email)) {
                 accountManager.setPassword(acc, pwd);
-                accountManager.setAuthToken(acc, AppConstants.AUTH_TYPE, token);
+                accountManager.setAuthToken(acc, AppConstants.AUTH_TOKEN_TYPE, token);
                 return;
             }
         }
         final Account account = new Account(email, AppConstants.ACCOUNT_TYPE);
         accountManager.addAccountExplicitly(account, pwd, null);
-        accountManager.setAuthToken(account, AppConstants.AUTH_TYPE, token);
+        accountManager.setAuthToken(account, AppConstants.AUTH_TOKEN_TYPE, token);
     }
 
     private void comeIn(int countPets) {

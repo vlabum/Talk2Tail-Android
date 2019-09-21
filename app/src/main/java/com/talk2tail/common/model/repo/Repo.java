@@ -18,6 +18,7 @@ import com.talk2tail.common.model.entity.dto.IDog;
 import java.util.List;
 
 import io.reactivex.Single;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class Repo implements IRepo {
@@ -56,6 +57,20 @@ public class Repo implements IRepo {
     public Single<LoginUserResponse> loginUser(LoginUser loginUser) {
         if (networkStatus.isOnline()) {
             return dataSource.restAuthLogin(loginUser).subscribeOn(Schedulers.io());
+        }
+        //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
+        return null;
+    }
+
+    @Override
+    public LoginUserResponse loginUserAuth(LoginUser loginUser) {
+        final LoginUserResponse[] response = new LoginUserResponse[1];
+        if (networkStatus.isOnline()) {
+            Disposable disposable = dataSource.restAuthLogin(loginUser).subscribe(loginUserResponse -> {
+                response[0] = loginUserResponse;
+            });
+            disposable.dispose();
+            return response[0];
         }
         //TODO: пока приложение полностью on-line, в будущем нужно сделать возможным работу off-line
         return null;

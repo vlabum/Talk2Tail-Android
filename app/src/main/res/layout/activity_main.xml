@@ -221,7 +221,6 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
-        app:shapeAppearanceOverlay="@drawable/fab_shape"
         app:elevation="12dp"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 

@@ -14,7 +14,7 @@ public class TalkToTailAuthenticatorService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
 
-        TalkToTailAuthenticatir authenticator = new TalkToTailAuthenticatir(this);
+        TalkToTailAuthenticator authenticator = new TalkToTailAuthenticator(this);
         return authenticator.getIBinder();
     }
 }

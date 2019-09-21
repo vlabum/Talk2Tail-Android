@@ -41,7 +41,7 @@ public class UserProfilePresenter extends MvpPresenter<UserProfileView> {
     private void getUserInfo() {
         //TODO: брать текущий аккаунт из базы или синглтона
         final Account[] account = accountManager.getAccountsByType(AppConstants.ACCOUNT_TYPE);
-        final String token = accountManager.peekAuthToken(account[0], AppConstants.AUTH_TYPE);
+        final String token = accountManager.peekAuthToken(account[0], AppConstants.AUTH_TOKEN_TYPE);
         disposable = repo.getUserFull(token)
                 .observeOn(mainThreadScheduler)
                 .subscribe(userInfoFullList -> {
