@@ -21,6 +21,10 @@ public interface IRepo {
 
     void setToken(String token);
 
+    List<DogShort> getDogsShort();
+
+    void setDogsShort(List<DogShort> dogs);
+
     Single<RegisterUserResponse> registerUser(RegisterUser registerUser);
 
     Single<LoginUserResponse> loginUser(LoginUser loginUser);

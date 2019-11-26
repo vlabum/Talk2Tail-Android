@@ -13,6 +13,18 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/bottomNavigationMenuHeight"/>
 
+    <RelativeLayout
+        android:id="@+id/loading_main_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
     <View
         android:id="@+id/transparent_v"
         android:layout_width="match_parent"
@@ -211,7 +223,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-    <!-- FAB Menu -->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/owner_dashboard_fab"
         android:layout_width="wrap_content"
@@ -221,6 +233,8 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
+        android:backgroundTint="@color/fabBackground"
+        android:theme="@style/FABTheme"
         app:elevation="12dp"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 

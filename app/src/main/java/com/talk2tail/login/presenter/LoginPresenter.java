@@ -47,9 +47,9 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
+        /*
         Account[] account = accountManager.getAccountsByType(AppConstants.ACCOUNT_TYPE);
         //TODO: сделать выбор аккаунта, если их более чем 1
-        /*
         if (account.length == 1) {
             final String token = accountManager.peekAuthToken(account[0], AppConstants.AUTH_TOKEN_TYPE);
             if (TextUtils.isEmpty(token)) {
@@ -63,11 +63,10 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                 getCountDogsAndComeIn(repo.getToken());
             }
         }
-
-         */
         if (account.length == 0) {
             getViewState().showErrorMessage("no accounts");
         }
+        */
     }
 
     @Override

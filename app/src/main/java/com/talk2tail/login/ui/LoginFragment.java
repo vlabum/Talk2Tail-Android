@@ -1,6 +1,8 @@
 package com.talk2tail.login.ui;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +74,10 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView, Ba
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_login, container, false);
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.AppTheme_StartDark);
+        LayoutInflater inflaterLocal = inflater.cloneInContext(contextThemeWrapper);
+        view = inflaterLocal.inflate(R.layout.fragment_login, container, false);
+
         unbinder = ButterKnife.bind(this, view);
 
         loginOk.setOnClickListener(new View.OnClickListener() {

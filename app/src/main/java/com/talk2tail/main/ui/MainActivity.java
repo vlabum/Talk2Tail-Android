@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import com.talk2tail.common.AppConstants;
 import com.talk2tail.common.ui.BackButtonListener;
 import com.talk2tail.dogdashboard.ui.DogDashboardFragment;
 import com.talk2tail.dogvaccination.ui.DogVaccinationFragment;
+import com.talk2tail.login.presenter.LoginPresenter;
 import com.talk2tail.main.presenter.MainPresenter;
 import com.talk2tail.main.view.MainView;
 import com.talk2tail.ownerdashboard.ui.OwnerDashboardFragment;
@@ -45,6 +47,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
@@ -54,32 +57,49 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
 
     private static long ANIMATION_DURATION = 130;
     private static long SHOW_HIDE_ANIMATION_DURATION = 250;
+
     @BindView(R.id.transparent_v)
     protected View transparent;
 
     @BindView(R.id.owner_dashboard_fab)
     protected FloatingActionButton fab;
+
     @BindView(R.id.fab_menu_cv)
     protected CardView fab_menu_cv;
+
     @BindView(R.id.add_dog_fab_menu_cv)
     protected CardView addDog;
+
     @BindView(R.id.add_audio_fab_menu_cv)
     protected CardView addAudio;
+
     @BindView(R.id.add_event_fab_menu_cv)
     protected CardView addEvent;
+
     @BindView(R.id.add_task_fab_menu_cv)
     protected CardView addTask;
+
+    @BindView(R.id.loading_main_rl)
+    protected RelativeLayout loadingView;
+
     private boolean fabIsPressed = false;
+
+    AccountManager accountManager;
 
     @InjectPresenter
     MainPresenter presenter;
+
+    @ProvidePresenter
+    protected MainPresenter createPresenter() {
+        final MainPresenter presenter = new MainPresenter(AndroidSchedulers.mainThread());
+        App.getInstance().getAppComponent().inject(presenter);
+        return presenter;
+    }
 
     @Inject
     protected NavigatorHolder navigatorHolder;
 
     private Navigator navigator = new SupportAppNavigator(this, R.id.main_container);
-
-    private AccountManager accountManager;
 
     private Unbinder unbinder;
 
@@ -126,8 +146,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         super.onCreate(savedInstanceState);
         App.getInstance().getAppComponent().inject(this);
         setContentView(R.layout.activity_main);
-        accountManager = AccountManager.get(this);
         unbinder = ButterKnife.bind(this);
+        accountManager = AccountManager.get(this);
 
         final BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -138,16 +158,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         addAudio.setOnClickListener(this);
         addEvent.setOnClickListener(this);
         addTask.setOnClickListener(this);
-        int countPets = getIntent().getIntExtra("countPets", 0);
         getTokenForAccountCreateIfNeeded(AppConstants.ACCOUNT_TYPE, AppConstants.AUTH_TOKEN_TYPE);
-        presenter.setCountPets(countPets);
-    }
-
-    @ProvidePresenter
-    protected MainPresenter createPresenter() {
-        final MainPresenter mainPresenter = new MainPresenter();
-        App.getInstance().getAppComponent().inject(mainPresenter);
-        return mainPresenter;
     }
 
     @Override
@@ -283,7 +294,27 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
         hideFabMenu();
     }
 
-    private void getTokenForAccountCreateIfNeeded(String accountType, String authTokenType) {
+    @Override
+    public void showMessage(final String message) {
+        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorMessage(final String message) {
+        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showLoading() {
+        loadingView.setVisibility(View.VISIBLE);
+    }
+
+    public void getTokenForAccountCreateIfNeeded(String accountType, String authTokenType) {
         final AccountManagerFuture<Bundle> future = accountManager.getAuthTokenByFeatures(accountType, authTokenType, null, this, null, null,
                 new AccountManagerCallback<Bundle>() {
                     @Override
@@ -292,6 +323,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
                         try {
                             bnd = future.getResult();
                             final String authtoken = bnd.getString(AccountManager.KEY_AUTHTOKEN);
+                            presenter.goToOwnerDashboard();
                             showMessage(((authtoken != null) ? "SUCCESS!\ntoken: " + authtoken : "FAIL"));
                             Timber.d("GetTokenForAccount Bundle is " + bnd);
 
@@ -304,8 +336,5 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, View
                 , null);
     }
 
-    public void showMessage(String message) {
-        Toast.makeText(App.getInstance().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
 
 }

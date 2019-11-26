@@ -27,11 +27,25 @@ public class Repo implements IRepo {
 
     private INetworkStatus networkStatus;
 
+    //TODO: move to cache
     private String token;
+
+    //TODO: move to cache
+    private List<DogShort> dogsShort;
 
     public Repo(IDataSource dataSource, INetworkStatus networkStatus) {
         this.dataSource = dataSource;
         this.networkStatus = networkStatus;
+    }
+
+    @Override
+    public void setDogsShort(List<DogShort> dogs) {
+        this.dogsShort.addAll(dogs);
+    }
+
+    @Override
+    public List<DogShort> getDogsShort() {
+        return dogsShort;
     }
 
     @Override
